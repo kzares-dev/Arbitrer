@@ -1,9 +1,9 @@
-import { Module } from "@nestjs/common";
-import { BillingController } from "./billing.controller";
-import { BillingService } from "./billing.service";
-import { RmqModule } from "@app/common";
-import { ConfigModule } from "@nestjs/config";
-import Joi from "joi";
+import { Module } from '@nestjs/common';
+import { RmqModule } from '@app/common';
+import * as Joi from 'joi';
+import { BillingController } from './billing.controller';
+import { BillingService } from './billing.service';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [

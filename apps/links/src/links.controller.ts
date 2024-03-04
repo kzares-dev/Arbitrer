@@ -8,7 +8,6 @@ export class LinksController {
 
   @Post()
   async createLink(@Body() request: CreateLinkRequest) {
-    console.log(request)
     return this.linksService.createLink(request);
   }
 
