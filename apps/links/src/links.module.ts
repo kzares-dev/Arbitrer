@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 import { LinksController } from './links.controller';
 import { LinksService } from './links.service';
 import {ConfigModule} from '@nestjs/config';
-import {DatabaseModule} from "@app/common"
-import { MongooseModule } from '@nestjs/mongoose'
-import { LinksRepository } from "./links.repository"
-import { Link, LinkSchema }from './schemas/links.schema'
-import * as Joi from "joi"
+import {DatabaseModule, RmqModule} from "@app/common";
+import { MongooseModule } from '@nestjs/mongoose';
+import { LinksRepository } from "./links.repository";
+import { Link, LinkSchema }from './schemas/links.schema';
+import * as Joi from 'joi';
+import { BILLING_SERVICE } from './constants/services';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import * as Joi from "joi"
       isGlobal: true,
       validationSchema: Joi.object({
         MONGODB_URI: Joi.string().required(),
+        PORT: Joi.number().required(),
       }),
       envFilePath: './apps/links/.env'
     }),
@@ -22,6 +24,9 @@ import * as Joi from "joi"
     DatabaseModule,
     // calling the mongoose schema & register the link schema
     MongooseModule.forFeature([{ name: Link.name, schema: LinkSchema}]),
+    RmqModule.register({
+      name: BILLING_SERVICE,
+    })
   ],
   controllers: [LinksController],
   providers: [LinksService, LinksRepository],
