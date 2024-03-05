@@ -1,31 +1,20 @@
 {
-  "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/Arbitrer/src",
-  "compilerOptions": {
-    "deleteOutDir": true,
-    "webpack": true,
-    "tsConfigPath": "apps/Arbitrer/tsconfig.app.json"
-  },
+  "sourceRoot": "apps/orders/src",
   "monorepo": true,
-  "root": "apps/Arbitrer",
+  "root": "apps/orders",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/orders/tsconfig.app.json"
+  },
   "projects": {
-    "Arbitrer": {
+    "orders": {
       "type": "application",
-      "root": "apps/Arbitrer",
+      "root": "apps/orders",
       "entryFile": "main",
-      "sourceRoot": "apps/Arbitrer/src",
+      "sourceRoot": "apps/orders/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/Arbitrer/tsconfig.app.json"
-      }
-    },
-    "auth": {
-      "type": "application",
-      "root": "apps/auth",
-      "entryFile": "main",
-      "sourceRoot": "apps/auth/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/auth/tsconfig.app.json"
+        "tsConfigPath": "apps/orders/tsconfig.app.json"
       }
     },
     "billing": {
@@ -37,6 +26,15 @@
         "tsConfigPath": "apps/billing/tsconfig.app.json"
       }
     },
+    "auth": {
+      "type": "application",
+      "root": "apps/auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/auth/tsconfig.app.json"
+      }
+    },
     "common": {
       "type": "library",
       "root": "libs/common",
@@ -44,15 +42,6 @@
       "sourceRoot": "libs/common/src",
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
-      }
-    },
-    "links": {
-      "type": "application",
-      "root": "apps/links",
-      "entryFile": "main",
-      "sourceRoot": "apps/links/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/links/tsconfig.app.json"
       }
     }
   }
