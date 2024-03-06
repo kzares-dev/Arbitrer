@@ -1,12 +1,12 @@
 services:
-  orders:
+  links:
     build:
       context: .
-      dockerfile: ./apps/orders/Dockerfile
+      dockerfile: ./apps/links/Dockerfile
       target: development
-    command: npm run start:dev orders
+    command: npm run start:dev links
     env_file:
-      - ./apps/orders/.env
+      - ./apps/links/.env
     depends_on:
       - mongodb-primary
       - mongodb-secondary

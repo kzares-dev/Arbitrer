@@ -3,9 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import * as Joi from 'joi';
 import { DatabaseModule, RmqModule, AuthModule } from '@app/common';
-import { OrdersController } from './orders.controller';
-import { OrdersService } from './orders.service';
-import { OrdersRepository } from './orders.repository';
+import { LinksController } from './links.controler';
+import { LinksService } from './links.service';
+import { LinksRepository } from './links.repository';
 import { Order, OrderSchema } from './schemas/order.schema';
 import { BILLING_SERVICE } from './constants/services';
 
@@ -26,7 +26,7 @@ import { BILLING_SERVICE } from './constants/services';
     }),
     AuthModule,
   ],
-  controllers: [OrdersController],
-  providers: [OrdersService, OrdersRepository],
+  controllers: [LinksController],
+  providers: [LinksService, LinksRepository],
 })
-export class OrdersModule {}
+export class LinksModule {}

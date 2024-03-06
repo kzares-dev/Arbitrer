@@ -15,7 +15,7 @@ export class BillingController {
     return this.billingService.getHello();
   }
 
-  @EventPattern('order_created')
+  @EventPattern('link_created')
   @UseGuards(JwtAuthGuard)
   async handleOrderCreated(@Payload() data: any, @Ctx() context: RmqContext) {
     this.billingService.bill(data);

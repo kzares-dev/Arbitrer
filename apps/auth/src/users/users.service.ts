@@ -17,6 +17,7 @@ export class UsersService {
     const user = await this.usersRepository.create({
       ...request,
       password: await bcrypt.hash(request.password, 10),
+      links: [],
     });
     return user;
   }
