@@ -6,8 +6,8 @@ import { DatabaseModule, RmqModule, AuthModule } from '@app/common';
 import { LinksController } from './links.controler';
 import { LinksService } from './links.service';
 import { LinksRepository } from './links.repository';
-import { Order, OrderSchema } from './schemas/order.schema';
-import { BILLING_SERVICE } from './constants/services';
+import { Link, LinkSchema } from './schemas/link.schema';
+import { AUTH_SERVICE } from './constants/services';
 
 @Module({
   imports: [
@@ -17,12 +17,12 @@ import { BILLING_SERVICE } from './constants/services';
         MONGODB_URI: Joi.string().required(),
         PORT: Joi.number().required(),
       }),
-      envFilePath: './apps/orders/.env',
+      envFilePath: './apps/links/.env',
     }),
     DatabaseModule,
-    MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }]),
+    MongooseModule.forFeature([{ name: Link.name, schema: LinkSchema }]),
     RmqModule.register({
-      name: BILLING_SERVICE,
+      name: AUTH_SERVICE,
     }),
     AuthModule,
   ],

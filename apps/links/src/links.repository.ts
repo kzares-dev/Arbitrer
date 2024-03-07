@@ -2,16 +2,16 @@ import { Injectable, Logger } from '@nestjs/common';
 import { AbstractRepository } from '@app/common';
 import { InjectModel, InjectConnection } from '@nestjs/mongoose';
 import { Model, Connection } from 'mongoose';
-import { Order } from './schemas/order.schema';
+import { Link } from './schemas/link.schema';
 
 @Injectable()
-export class LinksRepository extends AbstractRepository<Order> {
+export class LinksRepository extends AbstractRepository<Link> {
   protected readonly logger = new Logger(LinksRepository.name);
 
   constructor(
-    @InjectModel(Order.name) orderModel: Model<Order>,
+    @InjectModel(Link.name) linkModel: Model<Link>,
     @InjectConnection() connection: Connection,
   ) {
-    super(orderModel, connection);
+    super(linkModel, connection);
   }
 }

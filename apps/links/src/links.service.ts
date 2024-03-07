@@ -1,31 +1,45 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
-import { BILLING_SERVICE } from './constants/services';
+import { AUTH_SERVICE } from './constants/services';
 import { CreateLinkRequest } from './dto/create-link.request';
 import { LinksRepository } from './links.repository';
+import { v4 as uuidv4 } from "uuid"
 
 @Injectable()
 export class LinksService {
   constructor(
     private readonly linksRepository: LinksRepository,
-    @Inject(BILLING_SERVICE) private billingClient: ClientProxy,
-  ) {}
+    @Inject(AUTH_SERVICE) private authClient: ClientProxy,
+  ) { }
 
   async createLink(request: CreateLinkRequest, authentication: string) {
     const session = await this.linksRepository.startTransaction();
 
-    console.log(authentication)
 
     try {
-      const link = await this.linksRepository.create(request, { session });
-      
+
+      // first attempt to create a link
+      const newLink = {
+        userId: request.userId,
+        shortenedUrl: uuidv4(),
+        url: request.url,
+      }
+
+      const link = await this.linksRepository.create(newLink, { session });
+      // then add the link id to the user pool
+
+
       await lastValueFrom(
-        this.billingClient.emit('link_created', {
-          request,
-          Authentication: authentication,
-        }),
+        this.authClient.emit('link_created', {
+         data: {
+          userId: request.userId,
+          linkId: link._id
+         },
+          authentication
+        }, ),
       );
+
       await session.commitTransaction();
       return link;
     } catch (err) {
@@ -37,4 +51,7 @@ export class LinksService {
   async getLinks() {
     return this.linksRepository.find({});
   }
+
+
 }
+
