@@ -1,55 +1,67 @@
 
+"use client"
 import { FaLocationArrow } from "react-icons/fa6";
-
+import { ScrollParallax } from "react-just-parallax";
 import MagicButton from "./MagicButton";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import Image from "next/image";
+import robot from "@/public/robot.jpg";
+import Link from "next/link";
 
 const Hero = () => {
   return (
-    <div className="pb-20 pt-36">
-      
+    <main
+      className="pb-5 pt-20">
       <div
-        className="h-screen w-full   bg-grid-white/[0.03] 
+        className="h-screen w-full bg-grid-white/[0.03] 
        absolute top-0 left-0 flex items-center justify-center"
       >
-        {/* Radial gradient for the container to give a faded look */}
         <div
-          // chnage the bg to , so it matches the bg color and will blend in
           className="absolute pointer-events-none inset-0 flex items-center justify-center 
           [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
         />
       </div>
-
       <div className="flex justify-center relative my-20 z-10">
-        <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
+        <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center relative">
           <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
-            Dynamic Web Magic with Next.js
+            Shorten it, profit from it.
           </p>
 
-          {/**
-           *  Link: https://ui.aceternity.com/components/text-generate-effect
-           *
-           *  change md:text-6xl, add more responsive code
-           */}
           <TextGenerateEffect
-            words="Transforming Concepts into Seamless User Experiences"
+            words="Shorten it, profit from it .... Arbitrer"
             className="text-center text-[40px] md:text-5xl lg:text-6xl"
           />
 
-          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            Hi! I&apos;m Adrian, a Next.js Developer based in Croatia.
+          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-white-100">
+            Monetize Your Links Quickly with our Link Shortening Platform!
           </p>
+          <div className="h-[1.4rem] bg-n-10 rounded-t-[0.9rem]" />
 
-          <a href="#about">
+          {/*-- The bigining of the hero image part --*/}
+          <div className="w-full md:px-20 lg:px-40 ">
+            <div className="aspect-[33/40] rounded-b-[0.9rem] overflow-hidden md:aspect-[688/490] lg:aspect-[1024/490]">
+              <Image
+                src={robot}
+                width={1440}
+                height={490}
+                className="w-full object-contain"
+                alt="Robot hero image"
+              />
+            </div>
+          </div>
+
+          <Link href="/auth/sign-in">
             <MagicButton
-              title="Show my work"
+              title="Start now"
               icon={<FaLocationArrow />}
               position="right"
             />
-          </a>
+          </Link>
         </div>
+
+
       </div>
-    </div>
+    </main>
   );
 };
 
