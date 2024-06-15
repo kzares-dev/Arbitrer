@@ -11,9 +11,9 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <main
-      className="pb-5 pt-20">
+      className="pb-5 pt-40">
       <div
-        className="h-screen w-full bg-grid-white/[0.03] 
+        className="h-screen w-full bg-grid-white/[0.05] 
        absolute top-0 left-0 flex items-center justify-center"
       >
         <div
@@ -33,7 +33,7 @@ const Hero = () => {
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-white-100">
-            Monetize Your Links Quickly with our Link Shortening Platform!
+            Monetize your links quickly with our link shortening platform!
           </p>
           <div className="h-[1.4rem] bg-n-10 rounded-t-[0.9rem]" />
 
@@ -43,7 +43,7 @@ const Hero = () => {
               <Image
                 src={robot}
                 width={1440}
-                height={490}
+                height={890}
                 className="w-full object-contain"
                 alt="Robot hero image"
               />

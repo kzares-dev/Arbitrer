@@ -19,6 +19,8 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@react-three/drei": "^9.106.2",
+    "@react-three/fiber": "^8.16.8",
     "@stripe/stripe-js": "^2.2.1",
     "@types/react-datepicker": "^4.19.5",
     "@uploadthing/react": "^6.0.2",
