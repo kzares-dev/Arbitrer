@@ -3,7 +3,7 @@ import {BackgroundBeams} from "@/components/ui/BackgroundBeams"
 
 export default function Home() {
   return (
-    <main  className="bg-black-100">
+    <main className="bg-black-100 min-h-screen">
       <BackgroundBeams />
 
       <Hero/>
