@@ -9,6 +9,7 @@ const FormField = ({
   placeholder,
   handleChangeText,
   otherStyles,
+  name,
   ...props
 } : any) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +23,8 @@ const FormField = ({
           className="flex-1 text-white font-psemibold text-base h-full bg-black-400 z-40 px-4"
           value={value}
           placeholder={placeholder}
-          onChangeText={handleChangeText}
+          onChange={handleChangeText}
+          name={name}
           secureTextEntry={title === "Password" && !showPassword}
           {...props}
         />
