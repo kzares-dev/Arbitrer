@@ -20,7 +20,7 @@ const FormField = ({
 
       <div className="w-full h-16  bg-black-400 rounded-2xl border-2 border-black-200 focus:border-secondary flex flex-row items-center overflow-hidden">
         <input
-          className="flex-1 text-white font-psemibold text-base h-full bg-black-400 z-40 px-4"
+          className="flex-1 text-white font-psemibold text-base h-full bg-black-400 z-10 px-4"
           value={value}
           placeholder={placeholder}
           onChange={handleChangeText}

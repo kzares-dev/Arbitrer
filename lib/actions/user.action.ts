@@ -39,6 +39,7 @@ async function createUser(prevState: any, formData: FormData) {
             data: {
                 email: rawFormData.email,
                 password: hash,
+                username: rawFormData.username,
             }
         })
     } catch {
@@ -59,7 +60,7 @@ async function createUser(prevState: any, formData: FormData) {
         .sign(secret)
 
     cookies().set("Authorization", jwt);
-
+    redirect("/dashboard");
     return {
         message: "User created succesfully",
         status: "success"
@@ -68,9 +69,6 @@ async function createUser(prevState: any, formData: FormData) {
 
 
 async function logUser(prevState: any, formData: FormData) {
-
-    // Simula la petición al servidor con un retraso de 5 segundos
-    await new Promise(resolve => setTimeout(resolve, 5000));
 
     // parse the form data
     const rawFormData = {
@@ -135,6 +133,7 @@ async function logUser(prevState: any, formData: FormData) {
         .sign(secret)
 
     cookies().set("Authorization", jwt);
+    redirect("/dashboard")
     return {
         message: "Login succesfull",
         status: "success"

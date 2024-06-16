@@ -6,7 +6,6 @@ import { logUser } from '@/lib/actions/user.action'
 import Link from 'next/link'
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { useRouter } from "next/navigation";
 import FormLoader from '@/components/FormLoader';
 
 const initialState = {
@@ -15,7 +14,6 @@ const initialState = {
 }
 function SignIn() {
     const [state, formAction] = useFormState(logUser, initialState);
-    const router = useRouter();
 
     useEffect(() => {
         // watch over the state 
@@ -24,7 +22,6 @@ function SignIn() {
         }
         if (state.status === "success") {
             toast.success(state.message);
-            router.push("/dashboard");
         }
     }, [state])
 
