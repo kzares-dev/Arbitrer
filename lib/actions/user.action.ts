@@ -2,34 +2,51 @@
 
 import { cookies } from "next/headers";
 import prisma from "../prisma";
-import { UserType } from "../types";
 import { validateEmail, validatePassword } from "../utils";
 import bcrypt from "bcryptjs";
 import * as jose from "jose";
 import { redirect } from "next/navigation";
 
 
-async function createUser(formData: FormData) {
+async function createUser(prevState: any, formData: FormData) {
     const rawFormData = {
         email: formData.get('email')?.toString(), // ? If the data is not stringify manually for some reasons ts trows an error 
         password: formData.get('password')?.toString(),
         username: formData.get('username')?.toString(),
     }
 
-    //TODO validate the data 
-    if (!rawFormData.email) return;
-    if (!rawFormData.password) return;
+    //TODO validate the data x
+    if (!rawFormData.email || !validateEmail(rawFormData.email)) {
+        return {
+            message: "Invalid Email",
+            status: "failed",
+        }
+    };
+    if (!rawFormData.password) {
+        return {
+            message: "Invalid Password",
+            status: "failed",
+        }
+    };
 
     // hash password
     const hash = bcrypt.hashSync(rawFormData.password, 8);
 
     //create user in db 
-    const user = await prisma.user.create({
-        data: {
-            email: rawFormData.email,
-            password: hash,
+    let user;
+    try {
+        user = await prisma.user.create({
+            data: {
+                email: rawFormData.email,
+                password: hash,
+            }
+        })
+    } catch {
+        return {
+            message: "Unable to connect to database",
+            status: "failed",
         }
-    })
+    }
 
 
     // set the authorization jwt
@@ -43,12 +60,17 @@ async function createUser(formData: FormData) {
 
     cookies().set("Authorization", jwt);
 
-    // redirect 
-    return redirect("/dashboard");
+    return {
+        message: "User created succesfully",
+        status: "success"
+    }
 }
 
 
-async function logUser(formData: FormData) {
+async function logUser(prevState: any, formData: FormData) {
+
+    // Simula la petición al servidor con un retraso de 5 segundos
+    await new Promise(resolve => setTimeout(resolve, 5000));
 
     // parse the form data
     const rawFormData = {
@@ -57,27 +79,50 @@ async function logUser(formData: FormData) {
     }
 
     // validate the data
-    if (!rawFormData.email) return;
-    if (!rawFormData.password) return;
+    if (!rawFormData.email || !validateEmail(rawFormData.email)) {
+        return {
+            message: "Invalid Email",
+            status: "failed",
+        }
+    };
+    if (!rawFormData.password) {
+        return {
+            message: "Invalid Password",
+            status: "failed",
+        }
+    };
 
     // find the user in the prisma database 
-    const user = await prisma.user.findFirst({
-        where: {
-            email: rawFormData.email,
+    let user;
+    try {
+        user = await prisma.user.findFirst({
+            where: {
+                email: rawFormData.email,
+            }
+        });
+    } catch {
+        return {
+            message: "Unable to connect to database",
+            status: "failed",
         }
-    });
+    }
+
     // exit if the user is not found
     if (!user) {
-        console.log("user not found")
-        return
+        return {
+            message: "User not Found",
+            status: "failed",
+        }
     }
 
     // compare password
     const isCorrectPassword = bcrypt.compareSync(rawFormData.password, user.password);
 
     if (!isCorrectPassword) {
-        console.log("password incorrect")
-        return
+        return {
+            message: "Password incorrect",
+            status: "failed",
+        }
     }
 
     // create jwt token
@@ -90,7 +135,10 @@ async function logUser(formData: FormData) {
         .sign(secret)
 
     cookies().set("Authorization", jwt);
-    return redirect("/dashboard");
+    return {
+        message: "Login succesfull",
+        status: "success"
+    }
 
 }
 

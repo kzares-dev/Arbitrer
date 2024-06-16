@@ -11,7 +11,7 @@ const FormField = ({
   otherStyles,
   name,
   ...props
-} : any) => {
+}: any) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -25,7 +25,6 @@ const FormField = ({
           placeholder={placeholder}
           onChange={handleChangeText}
           name={name}
-          secureTextEntry={title === "Password" && !showPassword}
           {...props}
         />
 

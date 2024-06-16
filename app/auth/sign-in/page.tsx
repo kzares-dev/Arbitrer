@@ -1,15 +1,42 @@
+"use client";
 import FormField from '@/components/FormField'
 import MagicButton from '@/components/MagicButton'
+import { useFormState } from 'react-dom'
 import { logUser } from '@/lib/actions/user.action'
 import Link from 'next/link'
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { useRouter } from "next/navigation";
+import FormLoader from '@/components/FormLoader';
 
+const initialState = {
+    message: "",
+    status: "",
+}
 function SignIn() {
+    const [state, formAction] = useFormState(logUser, initialState);
+    const router = useRouter();
+
+    useEffect(() => {
+        // watch over the state 
+        if (state.status === "failed") {
+            toast.error(state.message)
+        }
+        if (state.status === "success") {
+            toast.success(state.message);
+            router.push("/dashboard");
+        }
+    }, [state])
+
     return (
         <div className='flex items-center justify-center min-h-screen z-20 '>
             <form
-                action={logUser}
+                
+                action={formAction}
                 className="w-full flex flex-col  max-w-lg min-h-[60vh] px-4 my-6 py-20 bg-black-100  shadow-custom  shadow-purple rounded-[10px] overflow-hidden"
             >
+                <FormLoader />
+
                 <p className="text-3xl font-light text-gray-200 py-10 font-sans">
                     Log in to <span className='font-bold text-purple text-[35px]'>Arbitrer</span>
                 </p>
@@ -17,7 +44,6 @@ function SignIn() {
                 <FormField
                     title="Email"
                     otherStyles="mt-7"
-                    keyboardType="email-address"
                     name="email"
                 />
 

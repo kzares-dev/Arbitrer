@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NextTopLoader from 'nextjs-toploader';
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +23,18 @@ export default function RootLayout({
         <NextTopLoader
           color="#CBACF9"
           height={6}
+        />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
         />
         {children}
       </body>
