@@ -13,7 +13,7 @@ const Hero = () => {
     <main
       className="pb-5 pt-40">
       <div
-        className="h-screen w-full bg-grid-white/[0.05] 
+        className="h-screen w-full bg-grid-white/[0.03] 
        absolute top-0 left-0 flex items-center justify-center"
       >
         <div
@@ -25,7 +25,7 @@ const Hero = () => {
         <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center relative">
           <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
             Shorten it, profit from it.
-          </p>
+          </p>cl
 
           <TextGenerateEffect
             words="Shorten it, profit from it .... Arbitrer"
@@ -39,7 +39,7 @@ const Hero = () => {
 
           {/*-- The bigining of the hero image part --*/}
           <div className="w-full md:px-20 lg:px-40 ">
-            <div className="aspect-[33/40] rounded-b-[0.9rem] overflow-hidden md:aspect-[688/490] lg:aspect-[1024/490]">
+            <div className="aspect-[33/40] rounded-b-[0.9rem] overflow-hidden md:aspect-[688/490] lg:aspect-[1024/490] shadow-custom shadow-purple ">
               <Image
                 src={robot}
                 width={1440}
