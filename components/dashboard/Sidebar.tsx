@@ -18,7 +18,7 @@ function Sidebar() {
     // getting windows dimesion so the sidebar resize can be done correctly
 
     const getWindowDimensions = () => {
-        const { innerWidth: width, innerHeight: height } = window;
+        const { innerWidth: width, innerHeight: height } = window || null;
         return {
             width,
             height
@@ -57,7 +57,7 @@ function Sidebar() {
 
     ]
     const apps = [
-        { name: 'Shortener', Icon: <IoLinkOutline />, href: "/" },
+        { name: 'Shortener', Icon: <IoLinkOutline />, href: "/dashboard/shortener" },
     ]
     return (
         <>

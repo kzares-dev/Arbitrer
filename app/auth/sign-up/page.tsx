@@ -43,13 +43,11 @@ function SignUp() {
         <FormField
           title="Email"
           otherStyles="mt-7"
-          keyboardType="email-address"
           name="email"
         />
         <FormField
           title="Username"
           otherStyles="mt-7"
-          keyboardType="text"
           name="username"
 
         />
