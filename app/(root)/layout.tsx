@@ -8,7 +8,7 @@ export default function AuthLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className="min-h-[100vh] bg-black-100 bg-grid-white/[0.01]">
+        <div className="min-h-[100vh] bg-black-100 bg-grid-white/[0.04] flex-row flex">
             <Sidebar />
             {children}
         </div >

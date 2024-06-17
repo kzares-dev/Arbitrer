@@ -18,10 +18,9 @@ function Sidebar() {
     // getting windows dimesion so the sidebar resize can be done correctly
 
     const getWindowDimensions = () => {
-        const { innerWidth: width, innerHeight: height } = window || null;
         return {
-            width,
-            height
+            width: window.innerWidth,
+            height: window.innerHeight,
         };
     };
     const useWindowDimensions = () => {
@@ -37,18 +36,19 @@ function Sidebar() {
         }, []);
         return windowDimensions;
     };
+
     const { height, width } = useWindowDimensions();
 
     useEffect(() => {
         if (width <= 800) {
             setHideSidebar(true);
             setIsMobile(true);
-        }
-        else {
+        } else {
             setHideSidebar(false);
             setIsMobile(false);
         }
     }, [width]);
+
 
     const links = [
         { name: 'Home', Icon: <FaHome />, href: "/" },
