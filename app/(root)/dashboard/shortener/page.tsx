@@ -1,4 +1,5 @@
 import ShorteningBox from "@/components/dashboard/ShorteningBox";
+import UserShortenLinks from "@/components/dashboard/UserShortenLinks";
 import { IoLinkOutline } from "react-icons/io5";
 
 const Shortener = () => {
@@ -14,9 +15,8 @@ const Shortener = () => {
             {/*-- Shortening box functionality --*/}
             <ShorteningBox />
 
-
-
             {/*-- Some of the prevs shorten links --*/}
+            <UserShortenLinks />
 
         </section>
     )

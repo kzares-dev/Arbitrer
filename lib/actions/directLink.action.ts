@@ -2,6 +2,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import prisma from '../prisma';
 import { isValidUrl } from '../utils';
+import { DirectLink } from '@prisma/client';
 
 export async function createDirectLink(prevState: any, formData: FormData,) {
 
@@ -20,8 +21,9 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
             message: "Invalid link format"
         }
     }
+    let directLink;
     try {
-        const directLink = await prisma.directLink.create({
+        directLink = await prisma.directLink.create({
             data: data,
         })
     }
@@ -36,11 +38,24 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
     return {
         ...prevState,
         status: "success",
+        shortenLink: directLink.shortenLink,
         message: "Link shortened succesfully"
     }
 
 }
 
-export async function getUserLinks() {
-    
+export async function getUserLinks(
+    userId: string,
+    take: number,
+    skip: number
+): Promise<DirectLink[]> {
+
+    return await prisma.directLink.findMany({
+        where: {
+            userId: userId
+        },
+        take,
+        skip,
+    })
+
 }
