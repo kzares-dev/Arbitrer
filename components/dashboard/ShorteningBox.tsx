@@ -3,19 +3,27 @@ import { createDirectLink } from "@/lib/actions/directLink.action";
 import { RiAiGenerate } from "react-icons/ri";
 import { useFormState } from "react-dom";
 import FormLoader from "../FormLoader";
-
-
-const initialState = {
-    message: "",
-    status: "",
-    userId: "75b0d6b1-059a-4e84-8091-6644a1150e95",
-}   
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { useCookies } from 'next-client-cookies';
 
 function ShorteningBox() {
+    const cookies = useCookies();
+    const [state, formAction] = useFormState(createDirectLink, {
+        message: "",
+        status: "",
+        userId: cookies.get("userId"),
+    });
 
-    const [state, formAction] = useFormState(createDirectLink, initialState);
-
-    
+    useEffect(() => {
+        
+        if (state.status === "failed") {
+            toast.error(state.message);
+        }
+        if (state.status === "success") {
+            toast.success(state.message)
+        }
+    }, [state])
 
     return (
         <form action={formAction} className="w-full bg-black-200 min-h-[150px] rounded-[20px] py-3 px-5 flex flex-row items-center justify-center">

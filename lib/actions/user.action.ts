@@ -61,6 +61,7 @@ async function createUser(prevState: any, formData: FormData) {
         .sign(secret)
 
     cookies().set("Authorization", jwt);
+    cookies().set("userId", user.id);
     redirect("/dashboard");
     return {
         message: "User created succesfully",
@@ -134,6 +135,7 @@ async function logUser(prevState: any, formData: FormData) {
         .sign(secret)
 
     cookies().set("Authorization", jwt);
+    cookies().set("userId", user.id);
     redirect("/dashboard")
     return {
         message: "Login succesfull",
