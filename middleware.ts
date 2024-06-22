@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
 
     // If there is no cookie, redirect to the login page
     if (!cookie) {
-        if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    if (request.nextUrl.pathname.startsWith('/dashboard')) {
             return NextResponse.redirect(new URL("/auth/sign-in", request.url));
         }
         return; // Continue with the current request if it's not a dashboard route
@@ -20,13 +20,14 @@ export async function middleware(request: NextRequest) {
     try {
         const { payload } = await jose.jwtVerify(jwt, secret, {});
 
+
         // If the token is valid, redirect to the dashboard page
         if (request.nextUrl.pathname.startsWith('/auth') || request.nextUrl.pathname === '/') {
             return NextResponse.redirect(new URL('/dashboard', request.url));
         }
 
         // Continue with the current request if it's not a login route
-        return; 
+        return;
     } catch (err) {
         // If the token is invalid, redirect to the login page
         if (request.nextUrl.pathname.startsWith('/dashboard')) {

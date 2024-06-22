@@ -42,7 +42,8 @@ async function createUser(prevState: any, formData: FormData) {
                 username: rawFormData.username,
             }
         })
-    } catch {
+    } catch (e: any) {
+        console.log(e)
         return {
             message: "Unable to connect to database",
             status: "failed",
