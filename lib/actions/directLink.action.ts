@@ -1,7 +1,7 @@
 "use server";
 import { v4 as uuidv4 } from 'uuid';
 import prisma from '../prisma';
-import { isValidUrl } from '../utils';
+import { validateUrl } from '../utils';
 import { DirectLink } from '@prisma/client';
 
 export async function createDirectLink(prevState: any, formData: FormData,) {
@@ -14,7 +14,7 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
         originalLink: formData.get('link')!.toString(),
         shortenLink: uuid,
     }
-    if (!isValidUrl(data.originalLink)) {
+    if (!validateUrl(data.originalLink)) {
         return {
             ...prevState,
             status: "failed",
@@ -43,6 +43,15 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
     }
 
 }
+
+export async function getDirectLinksCount(userId: string): Promise<number> {
+    const count = await prisma.directLink.count({
+      where: {
+        userId: userId,
+      },
+    });
+    return count;
+  }
 
 export async function getUserLinks(
     userId: string,

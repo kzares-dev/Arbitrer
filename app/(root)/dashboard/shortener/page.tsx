@@ -1,5 +1,5 @@
 import ShorteningBox from "@/components/dashboard/ShorteningBox";
-import UserLinksShrimmer from "@/components/dashboard/UserLinksShrimmer";
+import { UserLinksShrimmer } from "@/components/dashboard/UserLinksShrimmer";
 import UserShortenLinks from "@/components/dashboard/UserShortenLinks";
 import { Suspense } from "react";
 import { IoLinkOutline } from "react-icons/io5";

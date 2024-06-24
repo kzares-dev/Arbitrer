@@ -1,5 +1,16 @@
 import { IoLibrary } from "react-icons/io5"
 
+function LinkShrimmer() {
+    return <div className="items-center w-full min-h-[115px] bg-white-200 rounded-md flex flex-row px-1 md:px-4">
+        <div className="flex-1 flex flex-col gap-1">
+            <div className="w-[40%] h-[30px] rounded-lg bg-gray-200 animate-pulse" />
+            <div className="w-[90%] h-[30px] rounded-lg bg-gray-200 animate-pulse" />
+        </div>
+
+
+    </div >
+}
+
 function UserLinksShrimmer() {
 
     const qty = [0, 1, 2, 3, 4]
@@ -10,19 +21,13 @@ function UserLinksShrimmer() {
                 Shorten Links
             </h1>
             {qty.map((item) => (
-                <div className="items-center w-full min-h-[100px] bg-white-200 rounded-md flex flex-row px-1 md:px-4" key={item}>
-
-
-                    <div className="flex-1 flex flex-col gap-1">
-                        <div className="w-[40%] h-[30px] rounded-lg bg-gray-200 animate-pulse"/>
-                        <div className="w-[90%] h-[30px] rounded-lg bg-gray-200 animate-pulse"/>
-                    </div>
-
-
-                </div>
+            <LinkShrimmer key={item} />
             ))}
         </div>
     )
 }
 
-export default UserLinksShrimmer
+export {
+    UserLinksShrimmer,
+    LinkShrimmer,
+}

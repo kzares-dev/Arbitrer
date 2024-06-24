@@ -76,7 +76,7 @@ function Sidebar() {
                 <div className="w-full flex flex-col pt-10 px-5 gap-5">
                     <div className='flex gap-5 flex-col'>
                         {links.map(({ name, Icon, href }) => (
-                            <Link className='flex items-center text-black-100 gap-2 text-[20px] font-semibold' href={href} >
+                            <Link key={name} className='flex items-center text-black-100 gap-2 text-[20px] font-semibold' href={href} >
                                 {Icon}
                                 {name}
                             </Link>
@@ -90,7 +90,7 @@ function Sidebar() {
                             Apps
                         </h1>
                         {apps.map(({ name, Icon, href }) => (
-                            <Link className='text-black-100 flex items-center gap-2 text-[20px] font-semibold font-mono' href={href} >
+                            <Link key={name} className='text-black-100 flex items-center gap-2 text-[20px] font-semibold font-mono' href={href} >
                                 {Icon}
                                 {name}
                             </Link>

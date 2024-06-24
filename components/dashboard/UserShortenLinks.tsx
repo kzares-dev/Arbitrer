@@ -1,4 +1,4 @@
-import { getUserLinks } from "@/lib/actions/directLink.action";
+import { getDirectLinksCount, getUserLinks } from "@/lib/actions/directLink.action";
 import { cookies } from "next/headers"
 import { IoLibrary } from "react-icons/io5";
 import RenderUserShortenLinks from "./RenderUserShortenLinks";
@@ -19,13 +19,19 @@ async function UserShortenLinks() {
 
     const userId = cookies().get("userId");
     let links;
+    let totalPages;
+    let linksQty;
 
     try {
-        links = await getUserLinks(userId!.value, 10, 0)
+        links = await getUserLinks(userId!.value, 5, 0)
+        linksQty = await getDirectLinksCount(userId!.value);
+        if (linksQty % 5 === 0) totalPages = Math.trunc(linksQty / 5)
+        else totalPages = Math.trunc(linksQty / 5) + 1
     } catch (e: any) {
         console.log(e)
         return <Error />
     }
+    console.log(totalPages)
 
     return (
         <div className="flex flex-col gap-5 my-10 bg-white-200 p-5 rounded-lg  border-[2px]">
@@ -34,7 +40,7 @@ async function UserShortenLinks() {
                 Shorten Links
             </h1>
 
-            <RenderUserShortenLinks links={links} />
+            <RenderUserShortenLinks linksQty={linksQty} userId={userId!.value} totalPages={totalPages} links={links} />
 
         </div>
     )
