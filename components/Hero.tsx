@@ -32,7 +32,7 @@ const Hero = () => {
             className="text-center text-[40px] md:text-5xl lg:text-6xl"
           />
 
-          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-white-100">
+          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl ">
             Monetize your links quickly with our link shortening platform!
           </p>
           <div className="h-[1.4rem] bg-n-10 rounded-t-[0.9rem]" />

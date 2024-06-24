@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`min-h-screen bg-black-100 ${inter.className}`}>
+      <body className={`bg-white-100 ${inter.className}`}>
         <NextTopLoader
           color="#CBACF9"
           height={6}
@@ -34,7 +34,6 @@ export default function RootLayout({
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="dark"
         />
         {children}
       </body>

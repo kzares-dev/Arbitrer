@@ -21,7 +21,7 @@ const CopyToClipboard = ({ text, size=30 }: { text: string, size?: number }) => 
 
     return (
         <div onClick={handleClick} className="cursor-pointer">
-            <FaCopy color={!isCopied ? "#C1C2D3" : "#00FF00"} size={size} />
+            <FaCopy color={!isCopied ? "#000" : "#00FF00"} size={size} />
         </div>
     );
 };

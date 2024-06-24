@@ -10,7 +10,7 @@ export default function AuthLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className="min-h-[100vh] bg-black-100">
+        <div className="min-h-[100vh] bg-white-100">
             <BackgroundStatic/>
             {children}
         </div >

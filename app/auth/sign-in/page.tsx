@@ -30,7 +30,7 @@ function SignIn() {
             <form
                 
                 action={formAction}
-                className="w-full flex flex-col  max-w-lg min-h-[60vh] px-4 my-6 py-20 bg-black-100  shadow-custom  shadow-purple rounded-[10px] overflow-hidden"
+                className="w-full flex flex-col  max-w-lg min-h-[60vh] px-4 my-6 py-20 bg-white-100  shadow-custom  shadow-purple rounded-[10px] overflow-hidden"
             >
                 <FormLoader />
 

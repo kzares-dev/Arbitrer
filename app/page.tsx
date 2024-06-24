@@ -4,7 +4,7 @@ import { StarsCanvas } from "@/components/canvas";
 
 export default function Home() {
   return (
-    <main className="bg-black-100 h-screen">
+    <main className="bg-white-100 h-screen">
       <Hero />
     </main>
   );

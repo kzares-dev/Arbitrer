@@ -30,20 +30,20 @@ function ShorteningBox() {
     }, [state])
 
     return (
-        <form action={formAction} className="w-full bg-black-200 min-h-[150px] rounded-[20px] py-3 px-5 flex flex-row items-center justify-center">
+        <form action={formAction} className="w-full bg-white-200 min-h-[150px] rounded-lg py-3 px-5 flex flex-row items-center justify-center  border-[2px]">
             {showPopup && <ShortenerPopup closePopUp={() => setShowPopup(!showPopup)} link={process.env.SERVER_URL + state.shortenLink} />}
             <FormLoader />
 
-            <div className="flex items-center justify-center flex-row border-[4px] w-full min-h-[100px] rounded-lg border-dashed bg-transparent border-white-100">
+            <div className="flex items-center justify-center flex-row border-[4px] w-full min-h-[100px] rounded-lg border-dashed bg-transparent border-gray-300">
                 <input
                     name="link"
-                    className="outline-none w-full p-5 text-[20px] lg:text-[20px] bg-transparent text-white font-thin "
+                    className="outline-none w-full p-5 text-[20px] lg:text-[20px] bg-transparent text-black font-medium "
                     type="text"
                     placeholder="Drop your link here..." />
 
 
             </div>
-            <button className="mx-5 rounded-md flex-col  flex items-center justify-center text-[30px] min-h-[100px] px-5 font-bold text-white-200">
+            <button className="mx-5 rounded-md flex-col  flex items-center justify-center text-[30px] min-h-[100px] px-5 font-bold text-black-100">
                 <RiAiGenerate />
                 <h1>Shorten</h1>
             </button>

@@ -8,9 +8,11 @@ export default function AuthLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className="min-h-[100vh] bg-black-100 bg-grid-white/[0.02] flex-row flex">
+        <div className=" bg-white-100 bg-grid-white/[0.02] flex-row flex">
             <Sidebar />
-            {children}
+            <div className="h-screen overflow-scroll scrollbar-hide w-full">
+                {children}
+            </div>
         </div >
     );
 }
