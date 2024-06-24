@@ -4,7 +4,7 @@ import { Triangle } from "react-loader-spinner"
 const FormLoader = () => {
     const { pending } = useFormStatus()
 
-    if (pending) return <div className="fixed inset-0 bg-white-200 z-20 flex items-center justify-center">
+    if (pending) return <div className="fixed inset-0 bg-[black]/70 z-20 flex items-center justify-center">
         <Triangle
             visible={true}
             height="80"

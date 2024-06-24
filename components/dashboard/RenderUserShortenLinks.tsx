@@ -110,7 +110,7 @@ function RenderUserShortenLinks(
                 </PaginationItem>
 
                 {currentPage + 1 <= totalPages && <PaginationItem>
-                    <div className="px-3 py-1 rounded-md bg-gray-100 cursor-pointer">
+                    <div  className="px-3 py-1 rounded-md bg-gray-100 cursor-pointer">
                         {currentPage + 1}
                     </div>
 
