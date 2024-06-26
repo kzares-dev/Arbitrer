@@ -1,6 +1,5 @@
 "use client"
 import { FaLocationArrow } from "react-icons/fa6";
-import { ScrollParallax } from "react-just-parallax";
 import MagicButton from "./MagicButton";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import Image from "next/image";

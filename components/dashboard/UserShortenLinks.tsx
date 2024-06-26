@@ -3,6 +3,7 @@ import { cookies } from "next/headers"
 import { IoLibrary } from "react-icons/io5";
 import RenderUserShortenLinks from "./RenderUserShortenLinks";
 import { MdOutlineSmsFailed } from "react-icons/md";
+import { PiSmileySadBold } from "react-icons/pi";
 
 
 const Error = () => {
@@ -13,6 +14,14 @@ const Error = () => {
             <h2 className="text-[18px] text-gray-400">Try refreshing the page</h2>
         </div>
     )
+}
+
+const NoLinks = () => {
+    return <div className="h-[300px] w-full flex items-center justify-center flex-col gap-2  bg-white-200 border-[2px] my-5">
+        <PiSmileySadBold size={40} />
+        <h1 className="text-[30px] font-bold "> No links found </h1>
+        <h2 className="text-[18px] text-gray-400">Try creating new one</h2>
+    </div>
 }
 
 async function UserShortenLinks() {
@@ -40,7 +49,12 @@ async function UserShortenLinks() {
                 Shorten Links
             </h1>
 
-            <RenderUserShortenLinks linksQty={linksQty} userId={userId!.value} totalPages={totalPages} links={links} />
+
+            {
+                links.length == 0
+                    ? <NoLinks />
+                    : <RenderUserShortenLinks linksQty={linksQty} userId={userId!.value} totalPages={totalPages} links={links} />
+            }
 
         </div>
     )
