@@ -12,7 +12,7 @@ async function createUser(prevState: any, formData: FormData) {
     const rawFormData = {
         email: formData.get('email')?.toString(), // ? If the data is not stringify manually for some reasons ts trows an error 
         password: formData.get('password')?.toString(),
-        username: formData.get('username')?.toString(),
+        username: formData.get('username')!.toString(),
     }
 
     //TODO validate the data x
