@@ -1,6 +1,4 @@
 "use client";
-import images from '@/constants/images'
-import Image from 'next/image'
 import Link from 'next/link';
 import { FaHome } from "react-icons/fa";
 import { LuLayoutDashboard } from "react-icons/lu";
@@ -9,46 +7,24 @@ import { CgMenuLeft } from "react-icons/cg";
 import { CiUser } from "react-icons/ci";
 import { FiBook } from "react-icons/fi";
 import { useEffect, useState } from 'react';
-
+import {useWindowWidth} from "@react-hook/window-size";
 
 function Sidebar() {
-    const [hideSidebar, setHideSidebar] = useState<boolean>(false)
-    const [isMobile, setIsMobile] = useState<boolean>(false)
+    const [hideSidebar, setHideSidebar] = useState<boolean>(false);
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+   
+    const windowWith = useWindowWidth()
 
-    // getting windows dimesion so the sidebar resize can be done correctly
-
-    const getWindowDimensions = () => {
-        return {
-            width: window.innerWidth,
-            height: window.innerHeight,
-        };
-    };
-    const useWindowDimensions = () => {
-        const [windowDimensions, setWindowDimensions] = useState(
-            getWindowDimensions()
-        );
-        useEffect(() => {
-            function handleResize() {
-                setWindowDimensions(getWindowDimensions());
-            }
-            window.addEventListener("resize", handleResize);
-            return () => window.removeEventListener("resize", handleResize);
-        }, []);
-        return windowDimensions;
-    };
-
-    const { height, width } = useWindowDimensions();
 
     useEffect(() => {
-        if (width <= 800) {
+        if (windowWith <= 800) {
             setHideSidebar(true);
             setIsMobile(true);
         } else {
             setHideSidebar(false);
             setIsMobile(false);
         }
-    }, [width]);
-
+    }, [windowWith]);
 
     const links = [
         { name: 'Home', Icon: <FaHome />, href: "/" },
@@ -65,7 +41,7 @@ function Sidebar() {
                 onClick={() => setHideSidebar(!hideSidebar)}
                 className='fixed top-4 left-4 z-10'
                 size={30}
-                color='white' />}
+                color='black' />}
 
             <nav className={` ${hideSidebar && " absolute left-0 top-0 translate-x-[-400px]"} transition ease-in-out duration-1000 max-w-[400px] w-full h-screen bg-white-200 shadow py-10 overflow-hidden flex-col gap-5`}>
                 <div className="flex items-center justify-center">
