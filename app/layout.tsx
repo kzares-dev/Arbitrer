@@ -4,6 +4,7 @@ import NextTopLoader from 'nextjs-toploader';
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import 'react-toastify/dist/ReactToastify.css';
+import { CookiesProvider } from "next-client-cookies/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,7 +36,9 @@ export default function RootLayout({
           draggable
           pauseOnHover
         />
-        {children}
+        <CookiesProvider>
+          {children}
+        </CookiesProvider>
       </body>
     </html>
   );
