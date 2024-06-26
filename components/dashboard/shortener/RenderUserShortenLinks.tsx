@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import CopyToClipboard from "../CopyToClipboard";
+import CopyToClipboard from "../../ui/CopyToClipboard";
 import { DirectLink } from "@prisma/client";
 import {
     Pagination,

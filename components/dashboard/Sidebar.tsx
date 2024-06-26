@@ -52,7 +52,7 @@ function Sidebar() {
 
     const links = [
         { name: 'Home', Icon: <FaHome />, href: "/" },
-        { name: 'Profile', Icon: <CiUser />, href: "/" },
+        { name: 'Profile', Icon: <CiUser />, href: "/dashboard/profile" },
         { name: 'Guides', Icon: <FiBook />, href: "/" },
 
     ]

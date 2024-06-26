@@ -1,6 +1,6 @@
 "use client"
-import FormField from '@/components/FormField'
-import MagicButton from '@/components/MagicButton'
+import FormField from '@/components/ui/FormField'
+import MagicButton from '@/components/ui/MagicButton'
 import { createUser } from '@/lib/actions/user.action'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'

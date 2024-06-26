@@ -1,10 +1,11 @@
 interface UserType {
-    username: string,
-    email: string,
-    password: string,
-  
-  }
+  username: string,
+  email: string,
+  password: string,
+  id: string,
 
-  export {
-    UserType,
-  }
+}
+
+export type {
+  UserType,
+}

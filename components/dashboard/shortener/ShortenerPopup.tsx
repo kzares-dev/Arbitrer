@@ -1,4 +1,4 @@
-import CopyToClipboard from "../CopyToClipboard"
+import CopyToClipboard from "../../ui/CopyToClipboard"
 import { IoMdClose } from "react-icons/io";
 
 function ShortenerPopup({ link, closePopUp }: { link: string, closePopUp: () => void }) {

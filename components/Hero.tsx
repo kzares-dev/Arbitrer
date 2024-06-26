@@ -1,6 +1,6 @@
 "use client"
 import { FaLocationArrow } from "react-icons/fa6";
-import MagicButton from "./MagicButton";
+import MagicButton from "./ui/MagicButton";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import Image from "next/image";
 import robot from "@/public/robot.jpg";

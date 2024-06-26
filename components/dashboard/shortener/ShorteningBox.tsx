@@ -2,7 +2,7 @@
 import { createDirectLink } from "@/lib/actions/directLink.action";
 import { RiAiGenerate } from "react-icons/ri";
 import { useFormState } from "react-dom";
-import FormLoader from "../FormLoader";
+import FormLoader from "../../ui/FormLoader";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useCookies } from 'next-client-cookies';

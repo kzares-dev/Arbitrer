@@ -1,12 +1,12 @@
 "use client";
-import FormField from '@/components/FormField'
-import MagicButton from '@/components/MagicButton'
+import FormField from '@/components/ui/FormField'
+import MagicButton from '@/components/ui/MagicButton'
 import { useFormState } from 'react-dom'
 import { logUser } from '@/lib/actions/user.action'
 import Link from 'next/link'
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
-import FormLoader from '@/components/FormLoader';
+import FormLoader from '@/components/ui/FormLoader';
 
 const initialState = {
     message: "",
