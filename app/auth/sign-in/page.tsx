@@ -26,16 +26,15 @@ function SignIn() {
     }, [state])
 
     return (
-        <div className='flex items-center justify-center min-h-screen z-20 '>
+        <div className='flex items-center justify-center min-h-screen'>
             <form
-                
                 action={formAction}
-                className="w-full flex flex-col  max-w-lg min-h-[60vh] px-4 my-6 py-20 bg-white-100  shadow-custom  shadow-purple rounded-[10px] overflow-hidden"
+                className="w-full flex flex-col  max-w-lg min-h-[60vh] px-4 my-6 py-20 bg-white-default z-10 shadow rounded-[10px] overflow-hidden"
             >
                 <FormLoader />
 
-                <p className="text-3xl font-light text-gray-200 py-10 font-sans">
-                    Log in to <span className='font-bold text-purple text-[35px]'>Arbitrer</span>
+                <p className="text-3xl font-light text-black-200 py-10 font-sans">
+                    Log in to <span className='font-bold text-black-100 text-[35px]'>Arbitrer</span>
                 </p>
 
                 <FormField
@@ -56,12 +55,12 @@ function SignIn() {
 
                 </div>
                 <div className="flex justify-center pt-5 flex-row gap-2">
-                    <p className="text-lg text-gray-100 font-pregular">
+                    <p className="text-lg text-black-100 font-sans">
                         Don't have an account?
                     </p>
                     <Link
                         href="/auth/sign-up"
-                        className="text-lg font-psemibold text-purple z-10"
+                        className="text-lg font-semibold text-black z-10"
                     >
                         Signup
                     </Link>

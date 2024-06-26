@@ -1,7 +1,4 @@
-import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
-import { BackgroundStatic } from "@/components/ui/BackgroundStatic";
-import images from "@/constants/images";
-import Image from "next/image";
+import BackgroundHero from "@/components/ui/BackgroundHero";
 
 
 export default function AuthLayout({
@@ -10,8 +7,8 @@ export default function AuthLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className="min-h-[100vh] bg-white-100">
-            <BackgroundStatic/>
+        <div className="min-h-[100vh]">
+            <BackgroundHero />
             {children}
         </div >
     );

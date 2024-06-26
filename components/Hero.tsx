@@ -1,4 +1,3 @@
-
 "use client"
 import { FaLocationArrow } from "react-icons/fa6";
 import { ScrollParallax } from "react-just-parallax";
@@ -7,14 +6,15 @@ import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import Image from "next/image";
 import robot from "@/public/robot.jpg";
 import Link from "next/link";
+import BackgroundHero from "./ui/BackgroundHero";
 
 const Hero = () => {
   return (
     <main
       className="pb-5 pt-40">
+      <BackgroundHero />
       <div
-        className="h-screen w-full bg-grid-white/[0.03] 
-       absolute top-0 left-0 flex items-center justify-center"
+        className="h-screen w-full absolute top-0 left-0 flex items-center justify-center"
       >
         <div
           className="absolute pointer-events-none inset-0 flex items-center justify-center 

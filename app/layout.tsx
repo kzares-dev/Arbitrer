@@ -21,8 +21,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`bg-white-100 ${inter.className}`}>
         <NextTopLoader
-          color="#CBACF9"
-          height={6}
+          color="#4F4A45"
+          height={4}
         />
         <ToastContainer
           position="top-right"

@@ -20,6 +20,7 @@ const config = {
     extend: {
       colors: {
         white: {
+          default: "#fff",
           100: "#F6F5F2",
           200: "#F5F7F8",
         },

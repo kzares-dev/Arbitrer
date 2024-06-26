@@ -1,4 +1,12 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  
+@tailwind components;
+@tailwind utilities;
+
+
+.bg-hero {
+  background-color: #F6F5F2;
+  opacity: .2;
+  background-image: radial-gradient(#4F4A45 1.7000000000000002px, transparent 1.7000000000000002px), radial-gradient(#4F4A45 1.7000000000000002px, #F6F5F2 1.7000000000000002px);
+  background-size: 68px 68px;
+  background-position: 0 0, 34px 34px;
+}
