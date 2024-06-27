@@ -7,12 +7,12 @@ import { CgMenuLeft } from "react-icons/cg";
 import { CiUser } from "react-icons/ci";
 import { FiBook } from "react-icons/fi";
 import { useEffect, useState } from 'react';
-import {useWindowWidth} from "@react-hook/window-size";
+import { useWindowWidth } from "@react-hook/window-size";
 
 function Sidebar() {
     const [hideSidebar, setHideSidebar] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState<boolean>(false);
-   
+
     const windowWith = useWindowWidth()
 
 

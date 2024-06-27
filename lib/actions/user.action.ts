@@ -6,6 +6,7 @@ import { validateEmail, validatePassword } from "../utils";
 import bcrypt from "bcryptjs";
 import * as jose from "jose";
 import { redirect } from "next/navigation";
+import { UserType } from "../types";
 
 
 async function createUser(prevState: any, formData: FormData) {
@@ -144,9 +145,24 @@ async function logUser(prevState: any, formData: FormData) {
 
 }
 
+async function getUser(userId: string) : Promise<UserType> {
+    const user = await prisma.user.findUnique({
+        where: {
+            id: userId
+        }
+    })
+
+    return {
+        id: user!.id,
+        email: user!.email,
+        username: user!.username,
+    }
+}
+
 export {
     createUser,
     logUser,
+    getUser
 }
 
 

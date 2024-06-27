@@ -6,7 +6,7 @@ import { IoLinkOutline } from "react-icons/io5";
 
 const Shortener = () => {
     return (
-        <section className="flex-1  max-w-[950px] mx-auto p-5 lg:pt-20">
+        <section className="container">
 
             <h1 className='flex items-center gap-2 text-[80px] font-semibold w-full'>
                 <IoLinkOutline />

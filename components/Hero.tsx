@@ -31,23 +31,13 @@ const Hero = () => {
             className="text-center text-[40px] md:text-5xl lg:text-6xl"
           />
 
-          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl ">
+            <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl ">
             Monetize your links quickly with our link shortening platform!
           </p>
           <div className="h-[1.4rem] bg-n-10 rounded-t-[0.9rem]" />
 
           {/*-- The bigining of the hero image part --*/}
-          <div className="w-full md:px-20 lg:px-40 ">
-            <div className="aspect-[33/40] rounded-b-[0.9rem] overflow-hidden md:aspect-[688/490] lg:aspect-[1024/490] shadow-custom shadow-purple ">
-              <Image
-                src={robot}
-                width={1440}
-                height={890}
-                className="w-full object-contain"
-                alt="Robot hero image"
-              />
-            </div>
-          </div>
+          
 
           <Link href="/auth/sign-in">
             <MagicButton

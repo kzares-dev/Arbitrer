@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .container {
+    @apply flex-1  max-w-[950px] mx-auto p-5 lg:pt-20 flex flex-col gap-5
+  }
+  .section {
+    @apply w-full bg-white-200 min-h-[150px] rounded-lg py-3 px-5 flex flex-col items-center justify-center  border-[2px]
+  }
+}
 
 .bg-hero {
   background-color: #F6F5F2;
@@ -9,4 +17,31 @@
   background-image: radial-gradient(#4F4A45 1.7000000000000002px, transparent 1.7000000000000002px), radial-gradient(#4F4A45 1.7000000000000002px, #F6F5F2 1.7000000000000002px);
   background-size: 68px 68px;
   background-position: 0 0, 34px 34px;
+}
+
+
+
+.timer-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.time-wrapper {
+  position: relative;
+  width: 80px;
+  height: 60px;
+  font-size: 48px;
+  font-family: "Montserrat";
+}
+
+
+
+.time-wrapper .time.up {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.time-wrapper .time.down {
+  opacity: 0;
+  transform: translateY(100%);
 }
