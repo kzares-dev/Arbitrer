@@ -8,6 +8,7 @@ import { CiUser } from "react-icons/ci";
 import { FiBook } from "react-icons/fi";
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from "@react-hook/window-size";
+import { GrAnalytics } from "react-icons/gr";
 
 function Sidebar() {
     const [hideSidebar, setHideSidebar] = useState<boolean>(false);
@@ -29,7 +30,8 @@ function Sidebar() {
     const links = [
         { name: 'Home', Icon: <FaHome />, href: "/" },
         { name: 'Profile', Icon: <CiUser />, href: "/dashboard/profile" },
-        { name: 'Guides', Icon: <FiBook />, href: "/" },
+       // { name: 'Guides', Icon: <FiBook />, href: "/" },
+        { name: 'Analytics', Icon: <GrAnalytics />, href: "/dashboard/analytics" },
 
     ]
     const apps = [

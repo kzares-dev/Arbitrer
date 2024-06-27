@@ -1,18 +1,26 @@
 "use client";
 import { useEffect, useState } from "react";
 import CopyToClipboard from "../../ui/CopyToClipboard";
-import { DirectLink } from "@prisma/client";
 import {
     Pagination,
     PaginationContent,
     PaginationEllipsis,
     PaginationItem,
-    PaginationLink,
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
 import { getUserLinks } from "@/lib/actions/directLink.action";
 import { LinkShrimmer } from "./UserLinksShrimmer";
+import { CiCalendar } from "react-icons/ci";
+import { FaEye } from "react-icons/fa";
+
+type DirectLink = {
+    id: string,
+    createdAt: Date,
+    totalViewCount: number,
+    originalLink: string,
+    shortenLink: string
+}
 
 // helper client component to display data and make the pagination works
 function RenderUserShortenLinks(
@@ -32,6 +40,7 @@ function RenderUserShortenLinks(
     const [currentPage, setCurrentPage] = useState(1);
     const [promisePending, setPromisePending] = useState(false);
     const [isFirstLoad, setIsFirstLoad] = useState(true);
+    const [serverUrl, _] = useState("http://localhost:3000")
 
     // this effect track the pagination change & call the database for the data
     useEffect(() => {
@@ -74,23 +83,37 @@ function RenderUserShortenLinks(
 
 
     return <div className="flex flex-col gap-5 ">
-        {promisePending ? <div className="">
+        {(promisePending) ? <div className="">
             <LinkShrimmer />
             <LinkShrimmer />
             <LinkShrimmer />
             <LinkShrimmer />
             <LinkShrimmer />
         </div> : data.map((item: DirectLink) => (
-            <div className="items-center w-full min-h-[100px] bg-white-200 rounded-md flex flex-row px-1 md:px-4" key={item.id}>
+            <div className="min-h-[100px] bg-white-100 py-4 border-[2px] rounded-md px-1 md:px-4 " key={item.id}>
 
+                <div className="flex flex-row  items-center w-full ">
 
-                <div className="flex-1">
-                    <h2 className="font-light text-gray-600 text-[16px]">{item.originalLink}</h2>
-                    <h1 className="font-light text-gray-400 text-[20px]">{process.env.SERVER_URL + item.shortenLink}</h1>
+                    <div className="flex-1">
+                        <h2 className="font-light text-gray-600 text-[16px]">{item.originalLink}</h2>
+                        <h1 className="font-light text-gray-400 text-[20px]">{serverUrl + "redirect/" + item.shortenLink}</h1>
+                    </div>
+
+                    <CopyToClipboard text={process.env.SERVER_URL + item.shortenLink} />
+
                 </div>
 
-                <CopyToClipboard text={process.env.SERVER_URL + item.shortenLink} />
+                <div className="w-full flex items-center py-3 justify-between">
+                    <div className="flex flex-row gap-2 text-[20px] text-black-100 items-center font-sans">
+                        <CiCalendar />
+                        <p> {item.createdAt.toLocaleDateString()} </p>
+                    </div>
 
+                    <div className="flex flex-row gap-2 text-[20px] text-black-100 items-center font-sans">
+                        <FaEye />
+                        <p> {item.totalViewCount} </p>
+                    </div>
+                </div>
             </div>))
         }
 
@@ -110,7 +133,7 @@ function RenderUserShortenLinks(
                 </PaginationItem>
 
                 {currentPage + 1 <= totalPages && <PaginationItem>
-                    <div  className="px-3 py-1 rounded-md bg-gray-100 cursor-pointer">
+                    <div className="px-3 py-1 rounded-md bg-gray-100 cursor-pointer">
                         {currentPage + 1}
                     </div>
 

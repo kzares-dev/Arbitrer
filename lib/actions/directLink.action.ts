@@ -57,7 +57,7 @@ export async function getUserLinks(
     userId: string,
     take: number,
     skip: number
-): Promise<DirectLink[]> {
+) {
 
     return await prisma.directLink.findMany({
         where: {
@@ -65,6 +65,13 @@ export async function getUserLinks(
         },
         take,
         skip,
+        select: {
+            id: true,
+            originalLink: true,
+            shortenLink: true,
+            createdAt: true,
+            totalViewCount: true,
+        },
     })
 
 }
@@ -92,7 +99,10 @@ export async function updateViewCount(linkId: string, date: string) {
             id: linkId
         },
         data: {
-            viewCount: tempCount
+            viewCount: tempCount,
+            totalViewCount: {
+                increment: 1,
+            }
         }
     })
 

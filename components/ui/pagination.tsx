@@ -1,5 +1,6 @@
 import * as React from "react"
-import { FaLeftLong, FaRightLong } from "react-icons/fa"
+import { FaAngleLeft } from "react-icons/fa";
+import { FaAngleRight } from "react-icons/fa";
 import { MdHorizontalRule } from "react-icons/md"
 
 import { cn } from "@/lib/utils"
@@ -70,7 +71,7 @@ const PaginationPrevious = ({
     className={cn("gap-1 pl-2.5", className)}
     {...props}
   >
-    <FaLeftLong className="h-4 w-4" />
+    <FaAngleLeft className="h-4 w-4" />
     <span>Previous</span>
   </PaginationLink>
 )
@@ -87,7 +88,7 @@ const PaginationNext = ({
     {...props}
   >
     <span>Next</span>
-    <FaRightLong className="h-4 w-4" />
+    <FaAngleRight className="h-4 w-4" />
   </PaginationLink>
 )
 PaginationNext.displayName = "PaginationNext"

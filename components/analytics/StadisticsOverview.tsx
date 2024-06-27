@@ -25,6 +25,19 @@ const StadisticsOverview = () => {
   )
 }
 
+const StadisticsOverviewFallback = () => {
+  return <div className="section">
+
+    <h1 className='flex items-center gap-2 text-[50px] font-thin text-black-100 font-sans w-full mb-5'>
+      <GrAnalytics size={40} />
+      Analytics
+    </h1>
+
+    <div className="border w-full gap-3 bg-gray-200 px-2 py-5 h-[50px] rounded-lg" />
+
+  </div>
+}
 
 
-export default StadisticsOverview
+
+export { StadisticsOverview, StadisticsOverviewFallback }
