@@ -16,8 +16,9 @@ model User {
 }
 
 model DirectLink {
-  id           String @id
-  viewCount    Int    @default(0)
+  id           String   @id
+  createdAt    DateTime @default(now())
+  viewCount    Json      @default("[]")
   userId       String
   originalLink String
   shortenLink  String

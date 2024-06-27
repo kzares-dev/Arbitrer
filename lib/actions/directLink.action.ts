@@ -46,12 +46,12 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
 
 export async function getDirectLinksCount(userId: string): Promise<number> {
     const count = await prisma.directLink.count({
-      where: {
-        userId: userId,
-      },
+        where: {
+            userId: userId,
+        },
     });
     return count;
-  }
+}
 
 export async function getUserLinks(
     userId: string,
@@ -66,5 +66,38 @@ export async function getUserLinks(
         take,
         skip,
     })
+
+}
+
+export async function updateViewCount(linkId: string, date: string) {
+
+    const viewCount = await prisma.directLink.findFirst({
+        where: {
+            id: linkId,
+        },
+    });
+
+    const tempCount = JSON.parse(JSON.stringify(viewCount!.viewCount));
+
+    const existingIndex = tempCount.findIndex((item: { date: Date, count: number }) => item.date.toString() === date);
+
+    if (existingIndex !== -1) {
+        tempCount[existingIndex].count++;
+    } else {
+        tempCount.push({ date, count: 1 });
+    }
+
+    await prisma.directLink.update({
+        where: {
+            id: linkId
+        },
+        data: {
+            viewCount: tempCount
+        }
+    })
+
+
+
+
 
 }

@@ -1,8 +1,9 @@
+import StadisticsChart from "./StadisticsChart";
 
 function TrafficOverview() {
   return (
     <div className="section">
-        Traffic Overview
+        <StadisticsChart />
     </div>
   )
 }

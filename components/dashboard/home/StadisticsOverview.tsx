@@ -16,7 +16,7 @@ const StadisticsOverview = () => {
         Analytics
       </h1>
 
-      <Link href={"/dashboard/shortener"}  className="border w-full gap-3 flex flex-row items-center bg-white-100 px-2 py-5 font-sans font-semibold text-lg cursor-pointer">
+      <Link href={"/dashboard/shortener"} className="border w-full gap-3 flex flex-row items-center bg-white-100 px-2 py-5 font-sans font-semibold text-lg cursor-pointer">
         <p className="flex flex-row gap-1 items-center"> <IoLinkSharp size={20} /> Direct Links: </p>
 
         <p className="text-black-100">{directLinks}</p>
@@ -24,5 +24,7 @@ const StadisticsOverview = () => {
     </div>
   )
 }
+
+
 
 export default StadisticsOverview

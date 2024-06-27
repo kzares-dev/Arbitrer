@@ -20,3 +20,13 @@ export function validatePassword(password: string): boolean {
   return password.length > 6;
 }
 
+export function getFormattedDate(): string {
+  const date = new Date(); // Crea la fecha actual
+
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Los meses van de 0 a 11, así que se suma 1
+  const day = date.getDate().toString().padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate
+}
