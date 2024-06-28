@@ -106,8 +106,37 @@ export async function updateViewCount(linkId: string, date: string) {
         }
     })
 
+}
 
+type DataItem = { date: string; count: number };
 
+export async function getGlobalVisits(userId: string) {
+    const viewCount = await prisma.directLink.findMany({
+        where: {
+            userId: userId
+        },
+        select: {
+            viewCount: true,
+        },
+    });
+    console.log(viewCount)
+    // parse the data into readable object
+    const data = JSON.parse(JSON.stringify(viewCount));
+    const combinedData: { [date: string]: number } = {};
+    console.log(data)
 
+    // Iterate over the main array and sub-arrays
+    for (const { viewCount } of data) {
+        for (const item of viewCount) {
+            // If the date already exists, add the current count to the accumulated count
+            if (combinedData[item.date]) {
+                combinedData[item.date] += item.count;
+            } else {
+                // Otherwise, add the date and its count as a new entry
+                combinedData[item.date] = item.count;
+            }
+        }
+    }
 
+    return combinedData;
 }

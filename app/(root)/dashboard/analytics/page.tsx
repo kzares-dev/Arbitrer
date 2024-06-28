@@ -1,6 +1,6 @@
-import { RiRobot2Fill } from "react-icons/ri";
-import { StadisticsOverview, StadisticsOverviewFallback } from "@/components/analytics";
+import { StadisticsOverview, StadisticsOverviewFallback, TotalLinksChart } from "@/components/analytics";
 import { Suspense } from "react";
+import { GrAnalytics } from "react-icons/gr";
 
 
 function Analytics() {
@@ -9,13 +9,15 @@ function Analytics() {
     <section className="container">
 
       <h1 className='flex items-center gap-2 text-[80px] w-full font-sans font-normal lg:mb-10'>
-        <RiRobot2Fill />
-        Welcome Back
+        <GrAnalytics />
+        Analytics
       </h1>
 
       <Suspense fallback={<StadisticsOverviewFallback />}>
         <StadisticsOverview />
       </Suspense>
+
+      <TotalLinksChart />
 
 
 

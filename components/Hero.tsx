@@ -37,7 +37,7 @@ const Hero = () => {
           <div className="h-[1.4rem] bg-n-10 rounded-t-[0.9rem]" />
 
           {/*-- The bigining of the hero image part --*/}
-          
+            
 
           <Link href="/auth/sign-in">
             <MagicButton

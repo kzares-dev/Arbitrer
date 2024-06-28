@@ -1,7 +1,7 @@
 import { getDirectLinksCount } from "@/lib/actions/directLink.action"
 import { cookies } from "next/headers"
 import { IoLinkSharp } from "react-icons/io5";
-import { GrAnalytics } from "react-icons/gr";
+import { IoLibraryOutline } from "react-icons/io5";
 import Link from "next/link";
 
 const StadisticsOverview = () => {
@@ -12,8 +12,8 @@ const StadisticsOverview = () => {
     <div className="section">
 
       <h1 className='flex items-center gap-2 text-[50px] font-thin text-black-100 font-sans w-full mb-5'>
-        <GrAnalytics size={40} />
-        Analytics
+        <IoLibraryOutline size={40} />
+        Your repository
       </h1>
 
       <Link href={"/dashboard/shortener"} className="border w-full gap-3 flex flex-row items-center bg-white-100 px-2 py-5 font-sans font-semibold text-lg cursor-pointer">
@@ -29,7 +29,7 @@ const StadisticsOverviewFallback = () => {
   return <div className="section">
 
     <h1 className='flex items-center gap-2 text-[50px] font-thin text-black-100 font-sans w-full mb-5'>
-      <GrAnalytics size={40} />
+      <IoLibraryOutline size={40} />
       Analytics
     </h1>
 
