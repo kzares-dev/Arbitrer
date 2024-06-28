@@ -9,6 +9,7 @@ import { FiBook } from "react-icons/fi";
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from "@react-hook/window-size";
 import { GrAnalytics } from "react-icons/gr";
+import { FaYoutube } from 'react-icons/fa6';
 
 function Sidebar() {
     const [hideSidebar, setHideSidebar] = useState<boolean>(false);
@@ -36,6 +37,7 @@ function Sidebar() {
     ]
     const apps = [
         { name: 'Shortener', Icon: <IoLinkOutline />, href: "/dashboard/shortener" },
+        { name: 'Youtube', Icon: <FaYoutube />, href: "/dashboard/youtube" },
     ]
     return (
         <>
@@ -62,8 +64,8 @@ function Sidebar() {
                     </div>
                     {/*-- Apps section --*/}
 
-                    <div>
-                        <h1 className='text-[40px] p-2  font-mono font-thin flex items-center gap-2'>
+                    <div className='flex gap-5 flex-col'>
+                        <h1 className='text-[40px] p-2 pb-0 font-mono font-thin flex items-center gap-2'>
                             <LuLayoutDashboard />
                             Apps
                         </h1>

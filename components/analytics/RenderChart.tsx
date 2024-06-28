@@ -24,18 +24,20 @@ ChartJS.register(
 
 
 
-function RenderChart({ dates, values }: { dates: string[], values: string[] }) {
+function RenderChart({ dates, values }: { dates: number[], values: number[] }) {
+   
+    const sum = values.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     return (
         <div className="flex items-center section">
             <Line data={{
                 labels: dates,
                 datasets: [
                     {
-                        label: "First dataset",
+                        label: "Visits",
                         data: values,
                         fill: true,
-                        backgroundColor: "rgba(75,192,192,0.2)",
-                        borderColor: "rgba(75,192,192,1)"
+                        backgroundColor: "#000",
+                        borderColor: "#000"
                     },
                     
                 ]
