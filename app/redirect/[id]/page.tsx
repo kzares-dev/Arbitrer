@@ -18,10 +18,10 @@ export async function generateMetadata(
   const redirectData = await getRedirect(params.id)
   
   return {
-    title: redirectData.title,
-    description: redirectData.description,
+    title: redirectData?.title || "",
+    description: redirectData?.description || "",
     openGraph: {
-      images: [redirectData.image],
+      images: [redirectData?.image || ""],
     },
   }
 }
