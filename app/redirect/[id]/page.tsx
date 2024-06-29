@@ -2,9 +2,32 @@ import RenderCountdown from "@/components/redirect/RenderCountdown";
 import BackgroundHero from "@/components/ui/BackgroundHero";
 import { getRedirect } from "@/lib/actions/redirect.action"
 import VideoData from "@/components/redirect/VideoData"
-import RedirectSeo from "@/components/redirect/RedirectSeo"
+import { Metadata, ResolvingMetadata } from 'next'
+ 
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+ 
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+ 
+  // fetch data
+  const redirectData = await getRedirect(params.id)
+  
+  return {
+    title: redirectData.title,
+    description: redirectData.description,
+    openGraph: {
+      images: [redirectData.image],
+    },
+  }
+}
 
-const Redirect = async ({ params }: { params: { id: string } }) => {
+
+const Redirect = async ({ params, searchParams }: Props) => {
 
   const redirectData = await getRedirect(params.id);
   const videoData = {
@@ -16,7 +39,6 @@ const Redirect = async ({ params }: { params: { id: string } }) => {
   return (
     <section className="container h-screen items-center justify-center">
 
-      <RedirectSeo videoData={videoData} />
       <BackgroundHero />
       <RenderCountdown
         originalLink={redirectData!.originalLink}
