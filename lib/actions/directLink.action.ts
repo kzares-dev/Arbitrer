@@ -13,7 +13,11 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
         userId: prevState.userId,
         originalLink: formData.get('link')!.toString(),
         shortenLink: uuid,
+        image: formData.get("image")!.toString(),
+        title: formData.get("title")!.toString(),
+        description: formData.get("description")!.toString()
     }
+    console.log(data);
     if (!validateUrl(data.originalLink)) {
         return {
             ...prevState,

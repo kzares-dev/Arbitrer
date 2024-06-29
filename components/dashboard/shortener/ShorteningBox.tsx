@@ -19,7 +19,7 @@ function ShorteningBox() {
     const [showPopup, setShowPopup] = useState(false)
 
     useEffect(() => {
-        
+
         if (state.status === "failed") {
             toast.error(state.message);
         }
