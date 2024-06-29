@@ -6,7 +6,19 @@ function RedirectSeo({videoData}: {videoData: {title: string, image: string, des
     <NextSeo
       title={videoData.title}
       description={videoData.description}
-      image={videoData.image}
+      openGraph={{
+        type: 'website',
+        title: videoData.title,
+        description: videoData.description,
+        images: [
+          {
+            url: videoData.image,
+            width: 800,
+            height: 600,
+            alt: "",
+          },  
+        ],
+      }}
       
       
     />
