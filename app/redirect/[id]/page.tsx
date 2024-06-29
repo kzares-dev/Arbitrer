@@ -21,7 +21,7 @@ const Redirect = async ({ params }: { params: { id: string } }) => {
       <RenderCountdown
         originalLink={redirectData!.originalLink}
       />
-      {redirectData.title && <VideoData videoData={videoData} />}
+      {redirectData?.title && <VideoData videoData={videoData} />}
 
     </section>
   )
