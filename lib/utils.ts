@@ -66,3 +66,10 @@ export function generateObjectWithValues(dates: string[], data: Record<string, n
   // Return the 'result' object
   return result;
 }
+
+const YOUTUBE_REGEX = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+
+export function getYoutubeVideoId(link: string): string | null {
+  const match = link.match(YOUTUBE_REGEX);
+  return match && match[5] ? match[5] : null;
+}

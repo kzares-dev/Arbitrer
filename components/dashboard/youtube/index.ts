@@ -1,7 +1,7 @@
-import ShortenerBox from "./ShortenerBox";
+import ShorteningBox from "./ShorteningBox";
 import ShortenerPopup from "./ShortenerPopup";
 
 export {
-    ShortenerBox,
+    ShorteningBox,
     ShortenerPopup,
 }

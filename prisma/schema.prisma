@@ -23,4 +23,7 @@ model DirectLink {
   userId         String
   originalLink   String
   shortenLink    String
+  image          String   @default("")
+  title          String   @default("")
+  description    String   @default("")
 }

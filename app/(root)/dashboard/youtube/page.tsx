@@ -1,4 +1,4 @@
-import { ShorteningBox } from "@/components/dashboard";
+import { ShorteningBox } from "@/components/dashboard/youtube";
 import { TfiYoutube } from "react-icons/tfi";
 
 async function Youtube() {

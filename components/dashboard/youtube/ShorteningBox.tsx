@@ -3,51 +3,110 @@ import { createDirectLink } from "@/lib/actions/directLink.action";
 import { RiAiGenerate } from "react-icons/ri";
 import { useFormState } from "react-dom";
 import FormLoader from "../../ui/FormLoader";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useCookies } from 'next-client-cookies';
 import ShortenerPopup from "./ShortenerPopup";
+import { getYoutubeVideoId } from "@/lib/utils";
+import { getYoutubeVideoData } from "@/lib/actions/youtube.action";
+import { MdOutlineDriveFolderUpload } from "react-icons/md";
 
 function ShorteningBox() {
     const cookies = useCookies();
+
+    // Handle the field update
+    const [ytData, setYtData] = useState({
+        image: "",
+        title: "",
+        description: "",
+    })
+
+
     const [state, formAction] = useFormState(createDirectLink, {
         message: "",
         status: "",
         shortenLink: "http://localhost:3000/dashboard/kmsdlkvnlk",
         userId: cookies.get("userId"),
     });
-    const [showPopup, setShowPopup] = useState(false)
 
-    useEffect(() => {
-        
-        if (state.status === "failed") {
-            toast.error(state.message);
+    const [showPopup, setShowPopup] = useState(false);
+    const linkRef = useRef<HTMLInputElement>(null);
+
+    // track the pasted link, & check if is a valida youtube link
+    const verifyLinkValidity = (link: string) => {
+        const videoId = getYoutubeVideoId(link);
+
+        if (videoId) {
+
+            getYoutubeVideoData(videoId)
+                .then(data => {
+                    setYtData({
+                        image: data?.snippet.thumbnails.standard.url,
+                        title: data?.snippet.title,
+                        description: data?.snippet.description
+                    })
+                })
+                .catch(error => console.log({ error }))
+        } else {
+            setYtData({
+                image: "",
+                title: "",
+                description: "",
+            })
         }
-        if (state.status === "success") {
-            setShowPopup(true)
-            toast.success(state.message)
-        }
-    }, [state])
+    }
+
 
     return (
-        <form action={formAction} className="w-full bg-white-200 min-h-[150px] rounded-lg py-3 px-5 flex flex-row items-center justify-center  border-[2px]">
-            {showPopup && <ShortenerPopup closePopUp={() => setShowPopup(!showPopup)} link={process.env.SERVER_URL + state.shortenLink} />}
-            <FormLoader />
+        <div className="flex flex-col gap-5">
+            <form action={formAction} className="w-full bg-white-200 min-h-[150px] rounded-lg py-3 px-5 flex flex-row items-center justify-center  border-[2px]">
+                <FormLoader />
 
-            <div className="flex items-center justify-center flex-row border-[4px] w-full min-h-[100px] rounded-lg border-dashed bg-transparent border-gray-300">
+                <div className="flex items-center justify-center flex-row border-[4px] w-full min-h-[100px] rounded-lg border-dashed bg-transparent border-gray-300">
+                    <input
+                        onChange={(e) => verifyLinkValidity(e.target.value)}
+                        ref={linkRef}
+                        name="link"
+                        className="outline-none w-full p-5 text-[20px] lg:text-[20px] bg-transparent text-black font-medium "
+                        type="text"
+                        placeholder="Paste Youtube video link..." />
+                </div>
+
+                <button className="mx-5 rounded-md flex-col  flex items-center justify-center text-[30px] min-h-[100px] px-5 font-bold text-black-100">
+                    <MdOutlineDriveFolderUpload />
+                    <h1>Generate</h1>
+                </button>
+
+            </form>
+
+            {ytData.title && <div className="section lg:p-10">
+
+
+
+                <div className="w-full rounded-md overflow-hidden">
+                    <img
+                        className="w-full"
+                        src={ytData.image}
+                        alt="" />
+                </div>
+
                 <input
-                    name="link"
-                    className="outline-none w-full p-5 text-[20px] lg:text-[20px] bg-transparent text-black font-medium "
+                    className="py-4 text-[40px] font-thin font-sans text-left w-full text-black-100 border-b my-2 bg-transparent focus:outline-none"
                     type="text"
-                    placeholder="Paste a link to youtube video..." />
+                    value={ytData.title} 
+                    onChange={(data) => setYtData({...ytData, title: data.target.value}) }
+                    />
 
 
-            </div>
-            <button className="mx-5 rounded-md flex-col  flex items-center justify-center text-[30px] min-h-[100px] px-5 font-bold text-black-100">
-                <RiAiGenerate />
-                <h1>Shorten</h1>
-            </button>
-        </form>
+                <textarea
+                    value={ytData.description}
+                    onChange={(data) => setYtData({...ytData, description: data.target.value})}
+                    className="text-[15px] bg-transparent focus:outline-none font-sans text-gray-400 w-full min-h-[400px]" />
+
+
+            </div>}
+
+        </div>
     )
 }
 
