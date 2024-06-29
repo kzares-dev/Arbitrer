@@ -12,10 +12,9 @@ export function validateEmail(email: string): boolean {
 }
 
 export function validateUrl(url: string): boolean {
-  const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+  const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?(\?v=.*)?$/;
   return urlRegex.test(url);
 }
-
 export function validatePassword(password: string): boolean {
   return password.length > 6;
 }

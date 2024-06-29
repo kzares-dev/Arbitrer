@@ -8,7 +8,7 @@ import { IoMdLink } from "react-icons/io";
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 
-const RenderCountdown = ({ originalLink }: { originalLink: string }) => {
+const RenderCountdown = ({ originalLink }: { originalLink: string}) => {
 
     const [completeCountdown, setCompleteCountdown] = useState<boolean>(false);
     const [windowWith, windowHeight] = useWindowSize();
@@ -54,11 +54,13 @@ const RenderCountdown = ({ originalLink }: { originalLink: string }) => {
     };
 
     useEffect(() => {
-        toast.success("Redirecting to: " + originalLink )
+        toast.success("Loading Secure Link"   )
     }, [])
 
+
     return (
-        <div className='min-w-[400px] min-h-[600px] bg-white-default z-10 border shadow flex items-center justify-center flex-col gap-3'>
+        <div className='section bg-white-default z-10 border shadow px-4 py-10 flex-col gap-3 flex items-center justify-center'>
+           
             {
                 !completeCountdown ?
                     <CountdownCircleTimer

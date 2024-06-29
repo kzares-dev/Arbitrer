@@ -26,12 +26,13 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
         }
     }
     let directLink;
+    
     try {
         directLink = await prisma.directLink.create({
             data: data,
         })
     }
-    catch {
+    catch (e: any){
         return {
             ...prevState,
             status: "failed",

@@ -64,6 +64,18 @@ function ShorteningBox() {
         }
     }
 
+    // keep track of the request status
+    useEffect(() => {
+
+        if (state.status === "failed") {
+            toast.error(state.message);
+        }
+        if (state.status === "success") {
+            setShowPopup(true)
+            toast.success(state.message)
+        }
+    }, [state])
+
     return (
         <form action={formAction} className="flex flex-col gap-5">
             <div className="w-full bg-white-200 min-h-[150px] rounded-lg py-3 px-5 flex flex-row items-center justify-center  border-[2px]">
