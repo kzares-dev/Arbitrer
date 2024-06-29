@@ -1,20 +1,22 @@
-import RenderCountdown from "@/components/redirect/RenderCountdown";
-import BackgroundHero from "@/components/ui/BackgroundHero";
-import { getRedirect } from "@/lib/actions/redirect.action"
+"use client"
+import { NextSeo } from 'next-seo';
 
-const Redirect = async ({ params }: { params: { id: string } }) => {
-
-  const redirectData = await getRedirect(params.id);
-
-
+const MyServerComponent = () => {
   return (
-    <section className="container h-screen items-center justify-center">
+    <>
+      <NextSeo
+        title="Título de la página"
+        description="Descripción de la página"
+        openGraph={{
+          title: 'Título para Open Graph',
+          description: 'Descripción para Open Graph',
+        }}
+      />
+      <div>
+        Contenido del componente de servidor
+      </div>
+    </>
+  );
+};
 
-      <BackgroundHero/>
-      <RenderCountdown originalLink={redirectData!.originalLink} />
-
-    </section>
-  )
-}
-
-export default Redirect
+export default MyServerComponent;
