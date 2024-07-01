@@ -16,14 +16,15 @@ model User {
 }
 
 model DirectLink {
-  id             String   @id
-  createdAt      DateTime @default(now())
-  totalViewCount Int      @default(0)
-  viewCount      Json     @default("[]")
-  userId         String
-  originalLink   String
-  shortenLink    String
-  image          String   @default("")
-  title          String   @default("")
-  description    String   @default("")
+  id              String   @id
+  createdAt       DateTime @default(now())
+  totalViewCount  Int      @default(0)
+  viewCount       Json     @default("[]")
+  userId          String
+  originalLink    String
+  shortenLink     String
+  image           String   @default("")
+  title           String   @default("")
+  description     String   @default("")
+  postDescription String   @default("")
 }

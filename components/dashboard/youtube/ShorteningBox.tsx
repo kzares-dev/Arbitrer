@@ -1,5 +1,5 @@
 "use client";
-import { createDirectLink } from "@/lib/actions/directLink.action";
+import { createYoutubeDirectLink } from "@/lib/actions/directLink.action";
 import { RiAiGenerate } from "react-icons/ri";
 import { useFormState } from "react-dom";
 import FormLoader from "../../ui/FormLoader";
@@ -23,9 +23,7 @@ function ShorteningBox() {
         postDescription: "",
     })
 
-    console.log(ytData)
-
-    const [state, formAction] = useFormState(createDirectLink, {
+    const [state, formAction] = useFormState(createYoutubeDirectLink, {
         message: "",
         status: "",
         shortenLink: "",
@@ -124,6 +122,12 @@ function ShorteningBox() {
 
                     <div className="flex items-center justify-center flex-row border-[4px] w-full min-h-[100px] rounded-lg border-dashed bg-transparent border-gray-300">
                         <input
+                            onPaste={(e) => {
+                                e.preventDefault(); 
+                                const pastedText = e.clipboardData.getData('text/plain'); 
+                                verifyLinkValidity(pastedText); 
+                                linkRef.current!.value = pastedText; 
+                            }}
                             onChange={(e) => verifyLinkValidity(e.target.value)}
                             ref={linkRef}
                             name="link"
@@ -132,7 +136,7 @@ function ShorteningBox() {
                             placeholder="Paste Youtube video link..." />
                     </div>
 
-                    <button className="mx-5 rounded-md flex-col  flex items-center justify-center text-[30px] min-h-[100px] px-5 font-bold text-black-100">
+                    <button disabled={!ytData.title} className="mx-5 rounded-md flex-col  flex items-center justify-center text-[30px] min-h-[100px] px-5 font-bold text-black-100 disabled:text-gray-300">
                         <MdOutlineDriveFolderUpload />
                         <h1>Generate</h1>
                     </button>

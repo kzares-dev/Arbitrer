@@ -4,9 +4,16 @@ import prisma from '../prisma';
 import { validateUrl } from '../utils';
 import { DirectLink } from '@prisma/client';
 
-export async function createDirectLink(prevState: any, formData: FormData,) {
+export async function createYoutubeDirectLink(prevState: any, formData: FormData,) {
 
     const uuid = uuidv4();
+    if(!formData.get("title")) {
+        return {
+            ...prevState,
+            status: "failed",
+            message: "Data is not valid"
+        }
+    }
 
     const data = {
         id: uuid,
@@ -15,9 +22,10 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
         shortenLink: uuid,
         image: formData.get("image")!.toString(),
         title: formData.get("title")!.toString(),
-        description: formData.get("description")!.toString()
+        description: formData.get("description")!.toString(),
+        postDescription: formData.get("postDescription")!.toString(),
+
     }
-    console.log(data);
     if (!validateUrl(data.originalLink)) {
         return {
             ...prevState,
@@ -33,6 +41,7 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
         })
     }
     catch (e: any){
+        console.log(e);
         return {
             ...prevState,
             status: "failed",
@@ -48,6 +57,49 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
     }
 
 }
+
+export async function createDirectLink(prevState: any, formData: FormData,) {
+
+    const uuid = uuidv4();
+    
+
+    const data = {
+        id: uuid,
+        userId: prevState.userId,
+        originalLink: formData.get('link')!.toString(),
+        shortenLink: uuid,
+    }
+    if (!validateUrl(data.originalLink)) {
+        return {
+            ...prevState,
+            status: "failed",
+            message: "Invalid link format"
+        }
+    }
+    let directLink;
+    
+    try {
+        directLink = await prisma.directLink.create({
+            data: data,
+        })
+    }
+    catch (e: any){
+        console.log(e.message)
+        return {
+            ...prevState,
+            status: "failed",
+            message: "Error shortening link"
+        }
+    }
+    return {
+        ...prevState,
+        status: "success",
+        shortenLink: directLink.shortenLink,
+        message: "Link shortened succesfully"
+    }
+
+}
+
 
 export async function getDirectLinksCount(userId: string): Promise<number> {
     const count = await prisma.directLink.count({
