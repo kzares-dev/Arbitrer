@@ -1,5 +1,5 @@
 import ShorteningBox from "./ShorteningBox";
-import ShortenerPopup from "./ShortenerPopup";
+import ShortenerPopup from "./VideoPreview";
 
 export {
     ShorteningBox,

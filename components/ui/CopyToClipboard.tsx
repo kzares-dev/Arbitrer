@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { FaCopy } from "react-icons/fa6";
 
 
-const CopyToClipboard = ({ text, size=30 }: { text: string, size?: number }) => {
+const CopyToClipboard = ({ text, size=30, className="" }: { text: string, size?: number, className?: string }) => {
     const [isCopied, setIsCopied] = useState(false);
 
     const handleClick = async () => {
@@ -20,7 +20,7 @@ const CopyToClipboard = ({ text, size=30 }: { text: string, size?: number }) => 
     };
 
     return (
-        <div onClick={handleClick} className="cursor-pointer">
+        <div onClick={handleClick} className={`cursor-pointer ${className}`}>
             <FaCopy color={!isCopied ? "#000" : "#00FF00"} size={size} />
         </div>
     );
