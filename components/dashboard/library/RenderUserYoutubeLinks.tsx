@@ -85,7 +85,21 @@ function RenderUserYoutubeLinks(
   }
 
 
+  const selectClipboardCopy = (postDescription: string, videoTitle: string, videoDescription: string, link: string) => {
+    let clipboardText;
 
+    if (postDescription) {
+      clipboardText = postDescription;
+    } else {
+      clipboardText = `${videoTitle} \n ${videoDescription}`
+    }
+
+    clipboardText += `\n \n https://localhost:3000/redirect/${link}`;
+    return clipboardText;
+
+  }
+
+  
   return <div className="flex flex-col gap-5 ">
     {(promisePending) ? <div className="">
       <LinkShrimmer />
@@ -102,7 +116,7 @@ function RenderUserYoutubeLinks(
 
           <div className="px-3 flex-1 h-full relative">
 
-            <CopyToClipboard className="absolute top-3 right-3" text={serverUrl + item.shortenLink} />
+            <CopyToClipboard className="absolute top-3 right-3" text={selectClipboardCopy(item.description, item.title, item.description, item.shortenLink)} />
 
             {item.postDescription
               ? <h1 className="py-4 text-[20px] font-thin font-sans text-left w-full text-black-100 border-b my-2 bg-transparent focus:outline-none"> {item.postDescription} </h1>
