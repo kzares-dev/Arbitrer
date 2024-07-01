@@ -9,7 +9,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
-import { getUserLinks } from "@/lib/actions/directLink.action";
+import { getUserDirectLinks } from "@/lib/actions/directLink.action";
 import { LinkShrimmer } from "./UserLinksShrimmer";
 import { CiCalendar } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
@@ -58,7 +58,7 @@ function RenderUserShortenLinks(
         setPromisePending(true);
         const skip = currentPage === totalPages ? linksQty % 5 + 1 : 5
 
-        getUserLinks(userId, skip, currentPage - 1).then((data: DirectLink[]) => {
+        getUserDirectLinks(userId, skip, currentPage - 1).then((data: DirectLink[]) => {
             setData(data);
             setPromisePending(false)
         })

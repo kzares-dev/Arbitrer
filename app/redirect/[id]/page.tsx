@@ -1,6 +1,6 @@
 import RenderCountdown from "@/components/redirect/RenderCountdown";
 import BackgroundHero from "@/components/ui/BackgroundHero";
-import { getRedirect } from "@/lib/actions/redirect.action"
+import { getLinkMetadata } from "@/lib/actions/directLink.action"
 import VideoData from "@/components/redirect/VideoData"
 import { Metadata, ResolvingMetadata } from 'next'
  
@@ -14,8 +14,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
  
-  // fetch data
-  const redirectData = await getRedirect(params.id)
+  const redirectData = await getLinkMetadata(params.id, false)
   
   return {
     title: redirectData?.title || "",
@@ -29,7 +28,7 @@ export async function generateMetadata(
 
 const Redirect = async ({ params, searchParams }: Props) => {
 
-  const redirectData = await getRedirect(params.id);
+  const redirectData = await getLinkMetadata(params.id, true);
   const videoData = {
     image: redirectData?.image || "",
     title: redirectData?.title || "",

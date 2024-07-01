@@ -6,6 +6,8 @@ import { UserLinksShrimmer, LinkShrimmer } from "./shortener/UserLinksShrimmer"
 import UserShortenLinks from "./shortener/UserShortenLinks"
 import GetProfileData from "./profile/GetProfileData";
 import DangerZone from "./profile/DangereZone";
+import UserYoutubeLinks from "./library/UserYoutubeLinks";
+import RenderUserYoutubeLinks from "./library/RenderUserYoutubeLinks";
 
 export {
     Sidebar,
@@ -17,4 +19,6 @@ export {
     LinkShrimmer,
     GetProfileData,
     DangerZone,
+    UserYoutubeLinks,
+    RenderUserYoutubeLinks,
 }

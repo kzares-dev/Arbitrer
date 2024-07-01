@@ -1,13 +1,12 @@
 "use server";
 import { v4 as uuidv4 } from 'uuid';
 import prisma from '../prisma';
-import { validateUrl } from '../utils';
-import { DirectLink } from '@prisma/client';
+import { getFormattedDate, validateUrl } from '../utils';
 
 export async function createYoutubeDirectLink(prevState: any, formData: FormData,) {
 
     const uuid = uuidv4();
-    if(!formData.get("title")) {
+    if (!formData.get("title")) {
         return {
             ...prevState,
             status: "failed",
@@ -34,13 +33,13 @@ export async function createYoutubeDirectLink(prevState: any, formData: FormData
         }
     }
     let directLink;
-    
+
     try {
         directLink = await prisma.directLink.create({
             data: data,
         })
     }
-    catch (e: any){
+    catch (e: any) {
         console.log(e);
         return {
             ...prevState,
@@ -48,7 +47,7 @@ export async function createYoutubeDirectLink(prevState: any, formData: FormData
             message: "Error shortening link"
         }
     }
-    // return success 
+
     return {
         ...prevState,
         status: "success",
@@ -61,7 +60,7 @@ export async function createYoutubeDirectLink(prevState: any, formData: FormData
 export async function createDirectLink(prevState: any, formData: FormData,) {
 
     const uuid = uuidv4();
-    
+
 
     const data = {
         id: uuid,
@@ -77,13 +76,13 @@ export async function createDirectLink(prevState: any, formData: FormData,) {
         }
     }
     let directLink;
-    
+
     try {
         directLink = await prisma.directLink.create({
             data: data,
         })
     }
-    catch (e: any){
+    catch (e: any) {
         console.log(e.message)
         return {
             ...prevState,
@@ -105,12 +104,30 @@ export async function getDirectLinksCount(userId: string): Promise<number> {
     const count = await prisma.directLink.count({
         where: {
             userId: userId,
+            title: "",
+            description: "",
+            image: "",
         },
     });
     return count;
 }
 
-export async function getUserLinks(
+export async function getYoutubeLinksCount(userId: string): Promise<number> {
+    const count = await prisma.directLink.count({
+        where: {
+            userId: userId,
+            NOT: {
+                title: "",
+                description: "",
+                image: "",
+            }
+        },
+    });
+    return count;
+}
+
+
+export async function getUserDirectLinks(
     userId: string,
     take: number,
     skip: number
@@ -118,7 +135,10 @@ export async function getUserLinks(
 
     return await prisma.directLink.findMany({
         where: {
-            userId: userId
+            userId: userId,
+            title: "",
+            description: "",
+            image: "",
         },
         take,
         skip,
@@ -128,6 +148,38 @@ export async function getUserLinks(
             shortenLink: true,
             createdAt: true,
             totalViewCount: true,
+        },
+    })
+
+}
+
+export async function getUserYoutubeLinks(
+    userId: string,
+    take: number,
+    skip: number
+) {
+
+    return await prisma.directLink.findMany({
+        where: {
+            userId: userId,
+            NOT: {
+                title: "",
+                description: "",
+                image: "",
+            }
+        },
+        take,
+        skip,
+        select: {
+            id: true,
+            originalLink: true,
+            shortenLink: true,
+            createdAt: true,
+            totalViewCount: true,
+            title: true,
+            description: true,
+            image: true,
+            postDescription: true,
         },
     })
 
@@ -164,6 +216,20 @@ export async function updateViewCount(linkId: string, date: string) {
     })
 
 }
+
+
+export async function getLinkMetadata(id: string, update: boolean) {
+    const directLink = await prisma.directLink.findUnique({
+        where: {
+            id
+        }
+    })
+
+    if (update) await updateViewCount(id, getFormattedDate());
+
+    return directLink
+}
+
 
 type DataItem = { date: string; count: number };
 

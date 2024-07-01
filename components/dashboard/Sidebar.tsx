@@ -2,10 +2,9 @@
 import Link from 'next/link';
 import { FaHome } from "react-icons/fa";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { IoLinkOutline } from "react-icons/io5";
+import { IoLibraryOutline, IoLinkOutline } from "react-icons/io5";
 import { CgMenuLeft } from "react-icons/cg";
 import { CiUser } from "react-icons/ci";
-import { FiBook } from "react-icons/fi";
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from "@react-hook/window-size";
 import { GrAnalytics } from "react-icons/gr";
@@ -31,7 +30,7 @@ function Sidebar() {
     const links = [
         { name: 'Home', Icon: <FaHome />, href: "/" },
         { name: 'Profile', Icon: <CiUser />, href: "/dashboard/profile" },
-       // { name: 'Guides', Icon: <FiBook />, href: "/" },
+         { name: 'Library', Icon: <IoLibraryOutline />, href: "/dashboard/library" },
         { name: 'Analytics', Icon: <GrAnalytics />, href: "/dashboard/analytics" },
 
     ]
