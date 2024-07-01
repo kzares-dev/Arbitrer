@@ -13,7 +13,7 @@ const FormLoader = () => {
             ariaLabel="triangle-loading"
             wrapperStyle={{}}
             wrapperClass=""
-        />)
+        />
     </div>
 
 }

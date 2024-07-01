@@ -23,6 +23,8 @@ function ShorteningBox() {
         postDescription: "",
     })
 
+    console.log(ytData)
+
     const [state, formAction] = useFormState(createDirectLink, {
         message: "",
         status: "",
@@ -87,8 +89,23 @@ function ShorteningBox() {
         if (state.status === "success") {
             setShowPopup(true)
             toast.success(state.message)
+
         }
     }, [state])
+
+    const closePopUp = () => {
+        // wipe out all information when 1s passed
+        // the process can't be inmediate becouse the state is passed to a child component
+        linkRef.current!.value = ""
+        setYtData({
+            image: "",
+            title: "",
+            description: "",
+            postDescription: "",
+        })
+        setShowPopup(false);
+        setIsNotValidVideo(true)
+    }
 
     return (
         <form action={formAction} className="flex flex-col gap-5">
@@ -96,12 +113,13 @@ function ShorteningBox() {
                 link={state.shortenLink}
                 videoTitle={ytData.title}
                 videoDescription={ytData.description}
+                postDescription={ytData.postDescription}
                 videoImage={ytData.image}
-                closePopUp={() => setShowPopup(false)}
+                closePopUp={closePopUp}
             />}
 
-            <div className="flex flex-col gap-5 bg-white-200 border-[2px] rounded-md">
-                <div className="w-full  min-h-[150px] rounded-lg py-3 px-5 flex flex-row items-center justify-center ">
+            <div className="flex flex-col gap-2 bg-white-200 border-[2px] rounded-md">
+                <div className="w-full  min-h-[150px] rounded-lg  px-5 flex flex-row items-center justify-center ">
                     <FormLoader />
 
                     <div className="flex items-center justify-center flex-row border-[4px] w-full min-h-[100px] rounded-lg border-dashed bg-transparent border-gray-300">
@@ -123,13 +141,15 @@ function ShorteningBox() {
 
                 </div>
 
-                <textarea
-                    className="text-[20px] bg-transparent focus:outline-none font-sans text-gray-700 w-full min-h-[150px] scrollbar-hide border-[2px] rounded-md bg-white-200 my-2 p-2"
-                    name="postDescription"
-                    placeholder="Set a post description por publication || the default is the video title & description"
-                    value={ytData.postDescription}
-                    onChange={(data) => setYtData({ ...ytData, postDescription: data.target.value })}
-                />
+                {ytData.title && <div className="px-4">
+                    <textarea
+                        className="text-[18px] bg-transparent focus:outline-none font-sans text-gray-700 w-full min-h-[150px] scrollbar-hide border-[2px] rounded-md   p-2"
+                        name="postDescription"
+                        placeholder="set a post description por publication, the default is the video title & description"
+                        value={ytData.postDescription}
+                        onChange={(data) => setYtData({ ...ytData, postDescription: data.target.value })}
+                    />
+                </div>}
             </div>
 
 
