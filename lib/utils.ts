@@ -83,3 +83,34 @@ export function getYoutubeVideoId(link: string): string | null {
   const match = link.match(YOUTUBE_REGEX);
   return match && match[5] ? match[5] : null;
 }
+
+export function getPastYears(count: number = 10): number[] {
+  const currentYear = new Date().getFullYear();
+  const pastYears: number[] = [];
+
+  for (let i = 0; i < count; i++) {
+    pastYears.push(currentYear - i);
+  }
+
+  return pastYears.reverse();
+}
+
+
+export const getMonthNames = () : string[]=> {
+  const months: string[] = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  return months
+}
