@@ -242,11 +242,9 @@ export async function getGlobalVisits(userId: string) {
             viewCount: true,
         },
     });
-    console.log(viewCount)
     // parse the data into readable object
     const data = JSON.parse(JSON.stringify(viewCount));
     const combinedData: { [date: string]: number } = {};
-    console.log(data)
 
     // Iterate over the main array and sub-arrays
     for (const { viewCount } of data) {
@@ -260,6 +258,5 @@ export async function getGlobalVisits(userId: string) {
             }
         }
     }
-
     return combinedData;
 }

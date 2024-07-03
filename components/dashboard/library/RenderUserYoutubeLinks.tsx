@@ -106,7 +106,7 @@ function RenderUserYoutubeLinks(
       <LinkShrimmer />
       <LinkShrimmer />
     </div> : data.map((item: DirectLink) => (
-      <div className="min-h-[100px] py-4 border-[2px] rounded-md px-1 md:px-4 " key={item.id}>
+      <Link href={`/dashboard/analytics/${item.id}`} className="min-h-[100px] py-4 border-[2px] rounded-md px-1 md:px-4  cursor-pointer" key={item.id}>
 
         <div className="flex flex-row  items-center w-full py-4 gap-3">
 
@@ -147,7 +147,7 @@ function RenderUserYoutubeLinks(
           </div>
 
         </div>
-      </div>))
+      </Link>))
     }
 
 

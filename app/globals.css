@@ -7,7 +7,7 @@
     @apply flex-1  max-w-[950px] mx-auto p-5 lg:pt-20 flex flex-col gap-5
   }
   .section {
-    @apply w-full bg-white-200 min-h-[150px] rounded-lg py-3 px-5 flex flex-col items-center justify-center  border-[2px]
+    @apply w-full bg-white-200 min-h-[150px] rounded-lg py-3 px-5 flex flex-col  border-[2px]
   }
 }
 

@@ -30,13 +30,13 @@ export function getFormattedDate(): string {
   return formattedDate
 }
 
-export function generateMonthDates(year: number, month: number): string[] {
+export function generateMonthDates(year: number, month: number, limit: number): string[] {
   // Create a new Date object for the first day of the month
   const date = new Date(year, month - 1, 1);
   const dates: string[] = [];
 
-  // Iterate while we are in the same month
-  while (date.getMonth() === month - 1) {
+  // Iterate while we are in the same month and haven't reached the limit (if limit is 0, there is no limit)
+  while (date.getMonth() === month - 1 && (limit === 0 || date.getDate() <= limit)) {
     // Get the day, month, and year in the desired format
     const day = date.getDate().toString().padStart(2, '0');
     const formattedMonth = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -52,17 +52,28 @@ export function generateMonthDates(year: number, month: number): string[] {
   return dates;
 }
 
-export function generateObjectWithValues(dates: string[], data: Record<string, number>): Record<string, number> {
-  // Create an empty object to store the results
-  const result: Record<string, number> = {};
+interface ViewData {
+  date: string;
+  count: number;
+}
+
+export function generateObjectWithValues(dates: string[], data: ViewData[]): ViewData[] {
+  // Create an empty array to store the results
+  const result: ViewData[] = [];
 
   // Iterate over each date in the 'dates' array
   for (const date of dates) {
-    // Look for the value in the 'data' object, if it doesn't exist, use 0
-    result[date] = data[date] || 0;
+    // Find the corresponding data object in the 'data' array
+    const dataItem = data.find(item => item.date === date);
+
+    // If a matching data item is found, use its count, otherwise use 0
+    result.push({
+      date,
+      count: dataItem?.count || 0,
+    });
   }
 
-  // Return the 'result' object
+  // Return the 'result' array
   return result;
 }
 
