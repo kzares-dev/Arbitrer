@@ -4,8 +4,11 @@ import MagicButton from "./ui/MagicButton";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import Link from "next/link";
 import BackgroundHero from "./ui/BackgroundHero";
+import { redirect } from "next/navigation";
 
 const Hero = () => {
+
+  return redirect("/auth/sign-in")
   return (
     <main
       className="pb-5 pt-40">
