@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { CookiesProvider } from "next-client-cookies/server";
-import AdSense from "@/components/AdSense";
+import AdSense from "@/components/common/AdSense";
 import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });

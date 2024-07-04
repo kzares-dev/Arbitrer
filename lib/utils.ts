@@ -72,8 +72,6 @@ export function generateObjectWithValues(dates: string[], data: ViewData[]): Vie
       count: dataItem?.count || 0,
     });
   }
-
-  // Return the 'result' array
   return result;
 }
 

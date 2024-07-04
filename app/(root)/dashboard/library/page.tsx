@@ -1,3 +1,4 @@
+import GetLinks from "@/components/common/GetLinks"
 import { UserLinksShrimmer, UserShortenLinks, UserYoutubeLinks } from "@/components/dashboard"
 import { UserYoutubeLinksShrimmer } from "@/components/dashboard/library/UserYoutubeLinksShrimmer"
 import { Suspense } from "react"
@@ -16,7 +17,7 @@ function Library() {
 
             </div>
             <Suspense fallback={<UserYoutubeLinksShrimmer />}>
-                <UserYoutubeLinks />
+                <GetLinks />
             </Suspense>
             <Suspense fallback={<UserLinksShrimmer />}>
                 <UserShortenLinks />

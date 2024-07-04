@@ -1,9 +1,9 @@
 "use client"
 import { FaLocationArrow } from "react-icons/fa6";
-import MagicButton from "./ui/MagicButton";
-import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import MagicButton from "../ui/MagicButton";
+import { TextGenerateEffect } from "../ui/TextGenerateEffect";
 import Link from "next/link";
-import BackgroundHero from "./ui/BackgroundHero";
+import BackgroundHero from "../ui/BackgroundHero";
 import { redirect } from "next/navigation";
 
 const Hero = () => {
