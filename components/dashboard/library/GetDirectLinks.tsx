@@ -1,9 +1,9 @@
-import { getUserYoutubeLinks, getYoutubeLinksCount } from "@/lib/actions/directLink.action"
+import { getUserDirectLinks, getDirectLinksCount } from "@/lib/actions/directLink.action"
 import { cookies } from "next/headers"
-import { CgYoutube } from "react-icons/cg"
 import { MdOutlineSmsFailed } from "react-icons/md"
 import { PiSmileySadBold } from "react-icons/pi"
 import RenderLinks from "./RenderLinks"
+import { FaLink } from "react-icons/fa6"
 
 
 
@@ -25,15 +25,15 @@ const NoLinks = () => {
     </div>
 }
 
-export default async function GetLinks() {
+export default async function GetDirectLinks() {
     const userId = cookies().get("userId");
     let links;
     let totalPages;
     let linksQty;
 
     try {
-        links = await getUserYoutubeLinks(userId!.value, 3, 0)
-        linksQty = await getYoutubeLinksCount(userId!.value);
+        links = await getUserDirectLinks(userId!.value, 5, 0)
+        linksQty = await getDirectLinksCount(userId!.value);
         if (linksQty % 5 === 0) totalPages = Math.trunc(linksQty / 5)
         else totalPages = Math.trunc(linksQty / 5) + 1
     } catch (e: any) {
@@ -42,17 +42,17 @@ export default async function GetLinks() {
     }
 
     return (
-        <div className="flex flex-col gap-5 my-10 bg-white-200 p-5 rounded-lg  border-[2px]">
+        <div className="flex flex-col gap-5 bg-white-200 p-5 rounded-lg  border-[2px]">
             <h1 className='flex items-center gap-2  text-[30px] font-bold w-full'>
-                <CgYoutube />
-                Youtube Links
+                <FaLink />
+                Direct Links
             </h1>
 
 
             {
                 links.length == 0
                     ? <NoLinks />
-                    : <RenderLinks linksQty={linksQty} userId={userId!.value} totalPages={totalPages} links={links} />
+                    : <RenderLinks type="direct" linksQty={linksQty} userId={userId!.value} totalPages={totalPages} links={links} />
             }
 
         </div>

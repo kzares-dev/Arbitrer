@@ -10,7 +10,6 @@ export function validateEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email.toLowerCase());
 }
-
 export function validateUrl(url: string): boolean {
   const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?(\?v=.*)?$/;
   return urlRegex.test(url);
@@ -111,4 +110,18 @@ export const getMonthNames = () : string[]=> {
   ];
 
   return months
+}
+
+export const selectClipboardCopy = (postDescription?: string, videoTitle?: string, videoDescription?: string, link?: string) => {
+  let clipboardText;
+
+  if (postDescription) {
+    clipboardText = postDescription;
+  } else {
+    clipboardText = `${videoTitle} \n ${videoDescription}`
+  }
+
+  clipboardText += `\n \n https://localhost:3000/redirect/${link}`;
+  return clipboardText;
+
 }

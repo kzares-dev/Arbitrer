@@ -1,6 +1,5 @@
-import GetLinks from "@/components/common/GetLinks"
-import { UserLinksShrimmer, UserShortenLinks, UserYoutubeLinks } from "@/components/dashboard"
-import { UserYoutubeLinksShrimmer } from "@/components/dashboard/library/UserYoutubeLinksShrimmer"
+import GetDirectLinks from "@/components/dashboard/library/GetDirectLinks"
+import GetYoutubeLinks from "@/components/dashboard/library/GetYoutubeLinks"
 import { Suspense } from "react"
 import { IoLibrarySharp } from "react-icons/io5"
 
@@ -16,14 +15,11 @@ function Library() {
                 <p className="text-[25px] max-w-[700px] text-gray-400 font-sans">Here you can find all the link's you have shorten, for more information click on one of them</p>
 
             </div>
-            <Suspense fallback={<UserYoutubeLinksShrimmer />}>
-                <GetLinks />
-            </Suspense>
-            <Suspense fallback={<UserLinksShrimmer />}>
-                <UserShortenLinks />
-            </Suspense>
+            <GetYoutubeLinks />
+            <GetDirectLinks />
 
-    </section>
+
+        </section>
     )
 }
 

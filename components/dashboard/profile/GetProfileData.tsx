@@ -1,4 +1,4 @@
-"use setver";
+"use server";
 import { cookies } from "next/headers"
 import { getUser } from "@/lib/actions/user.action";
 import { FaUserAstronaut } from "react-icons/fa6";

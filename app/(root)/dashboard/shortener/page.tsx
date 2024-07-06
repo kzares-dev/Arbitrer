@@ -1,6 +1,4 @@
 import ShorteningBox from "@/components/dashboard/shortener/ShorteningBox";
-import { UserLinksShrimmer } from "@/components/dashboard/shortener/UserLinksShrimmer";
-import UserShortenLinks from "@/components/dashboard/shortener/UserShortenLinks";
 import { Suspense } from "react";
 import { IoLinkOutline } from "react-icons/io5";
 
@@ -17,9 +15,7 @@ const Shortener = () => {
             <ShorteningBox />
 
             {/*-- Some of the prevs shorten links --*/}
-            <Suspense fallback={<UserLinksShrimmer />}>
-                <UserShortenLinks />
-            </Suspense>
+        
 
         </section>
     )

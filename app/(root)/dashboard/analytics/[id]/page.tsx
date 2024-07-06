@@ -13,9 +13,6 @@ async function VideoAnalytics({ params }: { params: { id: string } }) {
     return (
         <div className='container'>
 
-            {/* -- Video details section -- */}
-
-
             {/*-- Insights section--*/}
             <div className="section gap-4">
                 <h1 className='flex items-center gap-2 text-[30px] w-full font-sans font-normal '>

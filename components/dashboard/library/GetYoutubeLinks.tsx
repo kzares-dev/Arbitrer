@@ -1,9 +1,10 @@
-import { getDirectLinksCount, getUserDirectLinks } from "@/lib/actions/directLink.action";
+import { getUserYoutubeLinks, getYoutubeLinksCount } from "@/lib/actions/directLink.action"
 import { cookies } from "next/headers"
-import { IoLibrary } from "react-icons/io5";
-import RenderUserShortenLinks from "./RenderUserShortenLinks";
-import { MdOutlineSmsFailed } from "react-icons/md";
-import { PiSmileySadBold } from "react-icons/pi";
+import { CgYoutube } from "react-icons/cg"
+import { MdOutlineSmsFailed } from "react-icons/md"
+import { PiSmileySadBold } from "react-icons/pi"
+import RenderLinks from "./RenderLinks"
+
 
 
 const Error = () => {
@@ -24,16 +25,15 @@ const NoLinks = () => {
     </div>
 }
 
-async function UserShortenLinks() {
-
+export default async function GetYoutubeLinks() {
     const userId = cookies().get("userId");
     let links;
     let totalPages;
     let linksQty;
 
     try {
-        links = await getUserDirectLinks(userId!.value, 5, 0)
-        linksQty = await getDirectLinksCount(userId!.value);
+        links = await getUserYoutubeLinks(userId!.value, 5, 0)
+        linksQty = await getYoutubeLinksCount(userId!.value);
         if (linksQty % 5 === 0) totalPages = Math.trunc(linksQty / 5)
         else totalPages = Math.trunc(linksQty / 5) + 1
     } catch (e: any) {
@@ -42,24 +42,19 @@ async function UserShortenLinks() {
     }
 
     return (
-        <div className="flex flex-col gap-5 my-10 bg-white-200 p-5 rounded-lg  border-[2px]">
+        <div className="flex flex-col gap-5 my-2 bg-white-200 p-5 rounded-lg  border-[2px]">
             <h1 className='flex items-center gap-2  text-[30px] font-bold w-full'>
-                <IoLibrary />
-                Direct Links
+                <CgYoutube />
+                Youtube Links
             </h1>
 
 
             {
                 links.length == 0
                     ? <NoLinks />
-                    : <RenderUserShortenLinks linksQty={linksQty} userId={userId!.value} totalPages={totalPages} links={links} />
+                    : <RenderLinks type="youtube" linksQty={linksQty} userId={userId!.value} totalPages={totalPages} links={links} />
             }
 
         </div>
     )
 }
-
-
-
-
-export default UserShortenLinks
