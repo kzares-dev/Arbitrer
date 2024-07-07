@@ -234,29 +234,38 @@ export async function getLinkMetadata(id: string, update: boolean) {
 type DataItem = { date: string; count: number };
 
 export async function getGlobalVisits(userId: string) {
-    const viewCount = await prisma.directLink.findMany({
-        where: {
-            userId: userId
-        },
-        select: {
-            viewCount: true,
-        },
+    const raw = await prisma.directLink.findMany({
+      where: {
+        userId: userId,
+      },
+      select: {
+        viewCount: true,
+      },
     });
-    // parse the data into readable object
-    const data = JSON.parse(JSON.stringify(viewCount));
-    const combinedData: { [date: string]: number } = {};
 
-    // Iterate over the main array and sub-arrays
-    for (const { viewCount } of data) {
-        for (const item of viewCount) {
-            // If the date already exists, add the current count to the accumulated count
-            if (combinedData[item.date]) {
-                combinedData[item.date] += item.count;
-            } else {
-                // Otherwise, add the date and its count as a new entry
-                combinedData[item.date] = item.count;
-            }
+    const count = JSON.parse(JSON.stringify(raw))
+  
+    // Flatten the viewCount array and group by date
+    const combinedData: { [date: string]: number } = {};
+    for (const { viewCount } of count) {
+      for (const { date, count } of viewCount) {
+        if (combinedData[date]) {
+          combinedData[date] += count;
+        } else {
+          combinedData[date] = count;
         }
+      }
     }
-    return combinedData;
-}
+  
+    // Convert the combinedData object into an array of ViewData objects
+    const viewDataArray: { date: string; count: number }[] = [];
+    for (const date in combinedData) {
+      viewDataArray.push({
+        date: date,
+        count: combinedData[date],
+      });
+    }
+  
+    return viewDataArray; 
+  }
+  

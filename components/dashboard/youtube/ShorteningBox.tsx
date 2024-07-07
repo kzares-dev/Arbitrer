@@ -123,10 +123,10 @@ function ShorteningBox() {
                     <div className="flex items-center justify-center flex-row border-[4px] w-full min-h-[100px] rounded-lg border-dashed bg-transparent border-gray-300">
                         <input
                             onPaste={(e) => {
-                                e.preventDefault(); 
-                                const pastedText = e.clipboardData.getData('text/plain'); 
-                                verifyLinkValidity(pastedText); 
-                                linkRef.current!.value = pastedText; 
+                                e.preventDefault();
+                                const pastedText = e.clipboardData.getData('text/plain');
+                                verifyLinkValidity(pastedText);
+                                linkRef.current!.value = pastedText;
                             }}
                             onChange={(e) => verifyLinkValidity(e.target.value)}
                             ref={linkRef}

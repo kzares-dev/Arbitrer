@@ -31,9 +31,8 @@ import { getUserYoutubeLinks } from "@/lib/actions/directLink.action";
 import LinkShrimmer from "./LinkShrimmer";
 import { selectClipboardCopy } from "@/lib/utils";
 import { CgEyeAlt } from "react-icons/cg";
-import { redirect } from "next/navigation";
 import Link from "next/link";
-
+import { IoAnalytics } from "react-icons/io5";
 
 type DirectLink = {
   id: string,
@@ -120,6 +119,7 @@ export default function RenderLink(
             <TableHead>Shorten Link</TableHead>
             <TableHead className="text-right">Views</TableHead>
             <TableHead className="text-right">Preview</TableHead>
+            <TableHead className="text-right">Analytics</TableHead>
 
           </TableRow>
         </TableHeader>
@@ -141,15 +141,20 @@ export default function RenderLink(
                     <DropdownMenuLabel>Video Preview</DropdownMenuLabel>
                     <DropdownMenuSeparator />
 
-                    <div className="flex flex-col  items-center py-4 gap-3 w-[250px]">
+                    {!item.image && item.title && item.description && (
+                      <h1 className="py-4 text-[15px] font-thin font-sans text-left w-full text-black-100 border-b my-2 bg-transparent focus:outline-none"> No preview </h1>
+
+                    )}
+
+                    <div className="flex flex-col  items-center py-4 gap-3 w-[250px] relative">
+
+                      <CopyToClipboard color="#fff"  className="absolute top-3 right-3 p-3 rounded-full bg-black-default shadow border" text={selectClipboardCopy(item.description, item.title, item.description, item.shortenLink)} size={25} />
 
                       <div className=" w-[200px] rounded-md overflow-hidden">
                         <img src={item.image} className="w-full h-full" alt="" />
                       </div>
 
                       <div className="px-3 flex-1 h-full relative">
-                        <CopyToClipboard className="absolute top-3 right-3" text={selectClipboardCopy(item.description, item.title, item.description, item.shortenLink)} />
-
 
                         {item.postDescription
                           ? <h1 className="py-4 text-[18px] font-thin font-sans text-left w-full text-black-100 border-b my-2 bg-transparent focus:outline-none"> {item.postDescription} </h1>
@@ -166,6 +171,12 @@ export default function RenderLink(
                   </DropdownMenuContent>
                 </DropdownMenu>
 
+              </TableCell>
+
+              <TableCell >
+                <Link className="w-full bg-gray-00 border px-3 py-1 hover:bg-gray-200 transition-all  rounded-md flex items-center justify-center" href={`/dashboard/analytics/${item.shortenLink}`}>
+                  <IoAnalytics size={25} />
+                </Link>
               </TableCell>
             </TableRow>
           ))}
