@@ -46,7 +46,7 @@ function Sidebar() {
                 size={30}
                 color='black' />}
 
-            <nav className={` ${hideSidebar && " absolute left-0 top-0 translate-x-[-400px]"} transition ease-in-out duration-1000 max-w-[400px] w-full h-screen bg-white-200 shadow py-10 overflow-hidden flex-col gap-5`}>
+            <nav className={` ${hideSidebar && " absolute left-0 top-0 translate-x-[-400px]"} transition ease-in-out duration-1000 max-w-[300px] w-full h-screen bg-white-200 shadow py-10 overflow-hidden flex-col gap-5`}>
                 <div className="flex items-center justify-center">
                     {/** <Image width={250} alt='' src={images.logo} /> */}
                     <h1 className='text-[50px] text-black font-bold font-sans'>Arbitrer</h1>

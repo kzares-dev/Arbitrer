@@ -3,6 +3,7 @@ import BackgroundHero from "@/components/ui/BackgroundHero";
 import { getLinkMetadata } from "@/lib/actions/directLink.action"
 import VideoData from "@/components/redirect/VideoData"
 import { Metadata, ResolvingMetadata } from 'next'
+import AdBanner from "@/components/common/AdBanner";
 
 type Props = {
   params: { id: string }
@@ -37,6 +38,7 @@ const Redirect = async ({ params, searchParams }: Props) => {
 
   return (
     <section className="container h-screen items-center justify-center">
+      <AdBanner />
       <BackgroundHero />
       <RenderCountdown
         originalLink={redirectData!.originalLink}

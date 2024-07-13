@@ -15,11 +15,12 @@ export function validateUrl(url: string): boolean {
   return urlRegex.test(url);
 }
 export function validatePassword(password: string): boolean {
+  if(!password) return false
   return password.length > 6;
 }
 
 export function getFormattedDate(): string {
-  const date = new Date(); // Crea la fecha actual
+  const date = new Date(); 
 
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Los meses van de 0 a 11, así que se suma 1

@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion"
 import { CgLink } from "react-icons/cg";
 import { IoHelpCircleOutline } from "react-icons/io5";
+import { FaChartPie } from "react-icons/fa6";
 
 function Dashboard() {
 
@@ -76,8 +77,8 @@ function Dashboard() {
           </Accordion>
         </div>
 
-        <h1 className='flex items-center gap-2 text-[40px] w-full font-mono font-normal  border-b pb-4'>
-          <import { FaChartPie } from "react-icons/fa"; className="-mb-2" />
+        <h1 className='flex items-center gap-2 text-[40px] w-full font-mono font-normal  border-b py-5'>
+          <FaChartPie  className="-mb-2" />
           Managing your views
         </h1>
 

@@ -8,11 +8,11 @@ export default function AuthLayout({
 }>) {
 
     return (
-        <div className=" bg-white-100 bg-grid-white/[0.02] flex-row flex">
+        <div className=" bg-gray-100 bg-grid-white/[0.02] flex-row flex">
             <Sidebar />
             <div className="h-screen overflow-scroll scrollbar-hide w-full">
                 {children}
             </div>
         </div >
-    );
+);
 }
